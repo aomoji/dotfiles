@@ -112,5 +112,8 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
 # wezterm
 export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"
+# starship
+eval "$(starship init zsh)"
