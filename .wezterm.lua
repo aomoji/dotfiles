@@ -87,7 +87,7 @@ K.tmux_keybinds = {
   -- workspace selection
   { key = "w",     mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
   -- tab selection
-  { key = "j",     mods = "LEADER", action = act.ShowTabNavigator },
+  { key = ",",     mods = "LEADER", action = act.ShowTabNavigator },
   { key = "n",     mods = "LEADER", action = act({ ActivateTabRelative = 1 }) },
   { key = "p",     mods = "LEADER", action = act({ ActivateTabRelative = -1 }) },
   { key = "1",     mods = "LEADER", action = act({ ActivateTab = 0 }) },
