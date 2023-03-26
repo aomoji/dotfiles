@@ -67,6 +67,24 @@ config.key_tables = {
     -- Cancel the mode by pressing q.
     { key = "q", action = "PopKeyTable" },
   },
+  search_mode = {
+    { key = "Enter",  mods = "NONE", action = act.CopyMode("PriorMatch") },
+    { key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
+    { key = "n",      mods = "CTRL", action = act.CopyMode("NextMatch") },
+    { key = "p",      mods = "CTRL", action = act.CopyMode("PriorMatch") },
+    { key = "r",      mods = "CTRL", action = act.CopyMode("CycleMatchType") },
+    { key = "u",      mods = "CTRL", action = act.CopyMode("ClearPattern") },
+    {
+      key = "PageUp",
+      mods = "NONE",
+      action = act.CopyMode("PriorMatchPage"),
+    },
+    {
+      key = "PageDown",
+      mods = "NONE",
+      action = act.CopyMode("NextMatchPage"),
+    },
+  },
 }
 
 -- This table will hold the keybinds.
@@ -116,8 +134,14 @@ K.default_keybinds = {
 config.keys = merge_lists(K.default_keybinds, K.tmux_keybinds)
 ---------------------------------------------------------------
 
+-----------------------------------------------------------------
+--- others
+---------------------------------------------------------------
 -- Use GPU accelerated rasterization.
 config.front_end = "WebGpu"
+-- Scroll bar.
+config.enable_scroll_bar = true
+---------------------------------------------------------------
 
 -- and finally, return the configuration to wezterm
 return config
