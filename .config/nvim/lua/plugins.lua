@@ -356,7 +356,7 @@ return require("packer").startup(function()
           { noremap = true }
         )
       end
-      -- require('lspconfig')['lua_ls'].setup{}
+      require("lspconfig")["lua-language-server"].setup({})
       require("lspconfig")["pyright"].setup({
         on_attach = on_attach,
         flags = lsp_flags,
