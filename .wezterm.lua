@@ -116,5 +116,8 @@ K.default_keybinds = {
 config.keys = merge_lists(K.default_keybinds, K.tmux_keybinds)
 ---------------------------------------------------------------
 
+-- Use GPU accelerated rasterization.
+config.front_end = "WebGpu"
+
 -- and finally, return the configuration to wezterm
 return config
