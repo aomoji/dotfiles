@@ -356,7 +356,10 @@ return require("packer").startup(function()
           { noremap = true }
         )
       end
-      require("lspconfig")["lua-language-server"].setup({})
+      require("lspconfig")["lua_ls"].setup({
+        on_attach = on_attach,
+        flags = lsp_flags,
+      })
       require("lspconfig")["pyright"].setup({
         on_attach = on_attach,
         flags = lsp_flags,
@@ -366,7 +369,7 @@ return require("packer").startup(function()
         flags = lsp_flags,
         -- Server-specific settings...
         settings = {
-              ["rust-analyzer"] = {},
+          ["rust-analyzer"] = {},
         },
       })
       require("lspconfig")["bashls"].setup({
@@ -383,9 +386,7 @@ return require("packer").startup(function()
         -- debug = true,
         capabilities = capabilities,
         sources = {
-          require("null-ls").builtins.diagnostics.luacheck.with({
-            extra_args = { "--globals", "vim", "--globals", "awesome" },
-          }),
+          require("null-ls").builtins.diagnostics.luacheck,
           require("null-ls").builtins.diagnostics.yamllint,
           require("null-ls").builtins.formatting.rustfmt,
           require("null-ls").builtins.formatting.stylua,
@@ -423,11 +424,11 @@ return require("packer").startup(function()
           { name = "git" },
         }),
         mapping = cmp.mapping.preset.insert({
-              ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-              ["<C-f>"] = cmp.mapping.scroll_docs(4),
-              ["<C-Space>"] = cmp.mapping.complete(),
-              ["<C-e>"] = cmp.mapping.abort(),
-              ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         window = {
           completion = cmp.config.window.bordered(),
