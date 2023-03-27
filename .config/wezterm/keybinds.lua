@@ -16,21 +16,21 @@ K.key_tables = {
     { key = "q", action = "PopKeyTable" },
   },
   search_mode = {
-    { key = "Enter",  mods = "NONE", action = act.CopyK.de("PriorK.tch") },
-    { key = "Escape", mods = "NONE", action = act.CopyK.de("Close") },
-    { key = "n",      mods = "CTRL", action = act.CopyK.de("NextK.tch") },
-    { key = "p",      mods = "CTRL", action = act.CopyK.de("PriorK.tch") },
-    { key = "r",      mods = "CTRL", action = act.CopyK.de("CycleK.tchType") },
-    { key = "u",      mods = "CTRL", action = act.CopyK.de("ClearPattern") },
+    { key = "Enter",  mods = "NONE", action = act.CopyMode("PriorMatch") },
+    { key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
+    { key = "n",      mods = "CTRL", action = act.CopyMode("NextMatch") },
+    { key = "p",      mods = "CTRL", action = act.CopyMode("PriorMatch") },
+    { key = "r",      mods = "CTRL", action = act.CopyMode("CycleMatchType") },
+    { key = "u",      mods = "CTRL", action = act.CopyMode("ClearPattern") },
     {
       key = "PageUp",
       mods = "NONE",
-      action = act.CopyK.de("PriorK.tchPage"),
+      action = act.CopyMode("PriorMatchPage"),
     },
     {
       key = "PageDown",
       mods = "NONE",
-      action = act.CopyK.de("NextK.tchPage"),
+      action = act.CopyMode("NextMatchPage"),
     },
   },
 }
@@ -38,7 +38,7 @@ K.key_tables = {
 K.tmux_keybinds = {
   -- for enabling control + q.
   { mods = "CTRL", key = "q",       action = act({ SendString = "\x11" }) },
-  { key = "[",     mods = "LEADER", action = "ActivateCopyK.de" },
+  { key = "[",     mods = "LEADER", action = "ActivateCopyMode" },
   { key = "v",     mods = "LEADER", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
   { key = "s",     mods = "LEADER", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
   { key = "c",     mods = "LEADER", action = act({ SpawnTab = "CurrentPaneDomain" }) },
@@ -79,3 +79,5 @@ K.default_keybinds = {
 function K.create_keybinds()
   return utils.merge_lists(K.default_keybinds, K.tmux_keybinds)
 end
+
+return K
