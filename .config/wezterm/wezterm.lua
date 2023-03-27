@@ -17,8 +17,7 @@ end
 --- color scheme
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
--- config.color_scheme = 'AdventureTime'
-config.color_scheme = "Kanagawa (Gogh)"
+config.color_scheme = "tokyonight_moon"
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------

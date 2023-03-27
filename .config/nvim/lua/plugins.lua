@@ -93,9 +93,9 @@ return require("packer").startup(function()
   })
 
   use({
-    "rebelot/kanagawa.nvim",
+    "folke/tokyonight.nvim",
     config = function()
-      vim.cmd("colorscheme kanagawa")
+      vim.cmd("colorscheme tokyonight-moon")
     end,
   })
 
