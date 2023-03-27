@@ -260,7 +260,7 @@ return require("packer").startup(function()
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" }, { "mfussenegger/nvim-dap" } },
     config = function()
       require("telescope").setup()
-      vim.api.nvim_set_keymap("n", "<leader>ff", "<Cmd>Telescope find_files<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>ff", "<Cmd>Telescope find_files hidden=true<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>fg", "<Cmd>Telescope live_grep<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>fo", "<Cmd>Telescope old_files<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>fb", "<Cmd>Telescope buffers<CR>", { noremap = true })
