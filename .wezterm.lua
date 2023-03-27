@@ -108,16 +108,15 @@ K.tmux_keybinds = {
   { key = ",",     mods = "LEADER", action = act.ShowTabNavigator },
   { key = "n",     mods = "LEADER", action = act({ ActivateTabRelative = 1 }) },
   { key = "p",     mods = "LEADER", action = act({ ActivateTabRelative = -1 }) },
-  { key = "1",     mods = "LEADER", action = act({ ActivateTab = 0 }) },
-  { key = "2",     mods = "LEADER", action = act({ ActivateTab = 1 }) },
-  { key = "3",     mods = "LEADER", action = act({ ActivateTab = 2 }) },
-  { key = "4",     mods = "LEADER", action = act({ ActivateTab = 3 }) },
-  { key = "5",     mods = "LEADER", action = act({ ActivateTab = 4 }) },
-  { key = "6",     mods = "LEADER", action = act({ ActivateTab = 5 }) },
-  { key = "7",     mods = "LEADER", action = act({ ActivateTab = 6 }) },
-  { key = "8",     mods = "LEADER", action = act({ ActivateTab = 7 }) },
-  { key = "9",     mods = "LEADER", action = act({ ActivateTab = 8 }) },
 }
+-- tab selection by number
+for i = 1, 9 do
+  table.insert(K.tmux_keybinds, {
+    key = tostring(i),
+    mods = "LEADER",
+    action = act({ ActivateTab = i - 1 }),
+  })
+end
 
 K.default_keybinds = {
   {
@@ -141,6 +140,10 @@ config.keys = merge_lists(K.default_keybinds, K.tmux_keybinds)
 config.front_end = "WebGpu"
 -- Scroll bar.
 config.enable_scroll_bar = true
+-- hide tab bar
+config.hide_tab_bar_if_only_one_tab = true
+-- tab bar at bottom
+config.tab_bar_at_bottom = true
 ---------------------------------------------------------------
 
 -- and finally, return the configuration to wezterm
