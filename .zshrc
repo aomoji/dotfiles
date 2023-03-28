@@ -1,9 +1,6 @@
 #
 # Executes commands at the start of an interactive session.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -33,11 +30,6 @@ zstyle ':completion:*' recent-dirs-insert both
 
 # zsh-completions
 fpath=(/opt/homebrew/share/zsh-completions $fpath)
-
-# lessに色付け
-# export LESSOPEN='| /opt/homebrew/Cellar/source-highlight/3.1.8_9/bin/src-hilite-lesspipe.sh %s'
-# export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
-
 
 # Peco
 # 過去のコマンドの一覧
