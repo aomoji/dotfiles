@@ -259,7 +259,11 @@ return require("packer").startup(function()
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" }, { "mfussenegger/nvim-dap" } },
     config = function()
-      require("telescope").setup()
+      require("telescope").setup({
+        defaults = {
+          file_ignore_patterns = { ".git/" },
+        },
+      })
       vim.api.nvim_set_keymap("n", "<leader>ff", "<Cmd>Telescope find_files hidden=true<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>fg", "<Cmd>Telescope live_grep<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>fo", "<Cmd>Telescope old_files<CR>", { noremap = true })
@@ -386,7 +390,6 @@ return require("packer").startup(function()
         -- debug = true,
         capabilities = capabilities,
         sources = {
-          require("null-ls").builtins.diagnostics.luacheck,
           require("null-ls").builtins.diagnostics.yamllint,
           require("null-ls").builtins.formatting.rustfmt,
           require("null-ls").builtins.formatting.stylua,
