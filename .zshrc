@@ -1,6 +1,7 @@
 # Alias
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias ls='ls -G'
 alias l='ls -GFlah'
 alias fc='cd "$(find . -type d | peco)"'
 alias pg='cd $(ghq root)/$(ghq list | peco)'
@@ -124,5 +125,7 @@ zinit light-mode for \
 
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma/fast-syntax-highlighting
+zinit light chrissicool/zsh-256color
 
 ### End of Zinit's installer chunk
