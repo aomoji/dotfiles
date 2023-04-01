@@ -52,6 +52,15 @@ return require("packer").startup(function()
     requires = { "nvim-tree/nvim-web-devicons", opt = true },
   })
 
+
+  use({
+    "hrsh7th/nvim-insx",
+    config = function()
+      require("insx.preset.standard").setup()
+      -- for fast-wrap use C-]
+    end,
+  })
+
   use({
     "windwp/nvim-autopairs",
     config = function()
