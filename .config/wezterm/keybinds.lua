@@ -53,11 +53,6 @@ K.tmux_keybinds = {
 	{ key = ",", mods = "LEADER", action = act.ShowTabNavigator },
 	{ key = "n", mods = "LEADER", action = act({ ActivateTabRelative = 1 }) },
 	{ key = "p", mods = "LEADER", action = act({ ActivateTabRelative = -1 }) },
-	-- pane resize
-	{ key = "H", mods = "LEADER", action = act({ AdjustPaneSize = { "Left", 5 } }) },
-	{ key = "L", mods = "LEADER", action = act({ AdjustPaneSize = { "Right", 5 } }) },
-	{ key = "K", mods = "LEADER", action = act({ AdjustPaneSize = { "Up", 5 } }) },
-	{ key = "J", mods = "LEADER", action = act({ AdjustPaneSize = { "Down", 5 } }) },
 }
 
 -- tab selection by number

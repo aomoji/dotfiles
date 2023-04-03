@@ -46,6 +46,7 @@ config.leader = {
 }
 -- Set keybinds.
 config.keys = keybinds.create_keybinds()
+config.key_tables = keybinds.key_tables
 ---------------------------------------------------------------
 
 -- and finally, return the configuration to wezterm
