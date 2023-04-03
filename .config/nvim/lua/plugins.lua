@@ -52,7 +52,6 @@ return require("packer").startup(function()
     requires = { "nvim-tree/nvim-web-devicons", opt = true },
   })
 
-
   use({
     "hrsh7th/nvim-insx",
     config = function()
@@ -104,7 +103,7 @@ return require("packer").startup(function()
   use({
     "folke/tokyonight.nvim",
     config = function()
-      vim.cmd("colorscheme tokyonight-moon")
+      vim.cmd("colorscheme tokyonight-night")
     end,
   })
 
