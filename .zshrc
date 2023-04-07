@@ -116,3 +116,5 @@ zinit light zdharma/fast-syntax-highlighting
 zinit light chrissicool/zsh-256color
 
 ### End of Zinit's installer chunk
+
+eval "$(direnv hook zsh)"
