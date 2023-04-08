@@ -52,6 +52,8 @@ K.tmux_keybinds = {
   { key = "t",     mods = "LEADER", action = act.ShowTabNavigator },
   { key = "n",     mods = "LEADER", action = act({ ActivateTabRelative = 1 }) },
   { key = "p",     mods = "LEADER", action = act({ ActivateTabRelative = -1 }) },
+  -- pane
+  { key = "z",     mods = "LEADER", action = act.TogglePaneZoomState },
 }
 
 -- tab selection by number
