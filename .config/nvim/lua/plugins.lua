@@ -90,6 +90,13 @@ return require("packer").startup(function()
   })
 
   use({
+    "beauwilliams/focus.nvim",
+    config = function()
+      require("focus").setup()
+    end,
+  })
+
+  use({
     "Xuyuanp/scrollbar.nvim",
     config = function()
       vim.cmd("autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()")
