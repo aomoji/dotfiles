@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local keybinds = require("keybinds")
+require("on")
 
 -- This table will hold the configuration.
 local config = {}
