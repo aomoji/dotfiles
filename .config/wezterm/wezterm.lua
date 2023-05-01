@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local keybinds = require("keybinds")
+require("on")
 
 -- This table will hold the configuration.
 local config = {}
@@ -31,8 +32,6 @@ config.enable_scroll_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 -- Tab bar at bottom.
 config.tab_bar_at_bottom = true
--- Hide window title.
-config.window_decorations = "RESIZE"
 -----------------------------------------------------------------
 
 -----------------------------------------------------------------

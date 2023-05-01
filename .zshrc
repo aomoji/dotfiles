@@ -5,6 +5,7 @@ alias ls='ls -G'
 alias l='ls -GFlah'
 alias fc='cd "$(find . -type d | sk)"'
 alias vi='nvim'
+alias o='open'
 
 # 過去のコマンドの一覧
 function sk-history-selection() {
