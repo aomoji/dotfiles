@@ -10,7 +10,7 @@ local config = {}
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
-	config = wezterm.config_builder()
+  config = wezterm.config_builder()
 end
 
 -- This is where you actually apply your config choices
@@ -40,9 +40,9 @@ config.tab_bar_at_bottom = true
 ---------------------------------------------------------------
 -- leader key
 config.leader = {
-	key = "q",
-	mods = "CTRL",
-	timeout_milliseconds = 2000,
+  key = "q",
+  mods = "CTRL",
+  timeout_milliseconds = 2000,
 }
 -- Set keybinds.
 config.keys = keybinds.create_keybinds()
@@ -53,6 +53,23 @@ config.key_tables = keybinds.key_tables
 --- mouse bindings
 ---------------------------------------------------------------
 config.mouse_bindings = mousebinds.mouse_bindings
+---------------------------------------------------------------
+
+-----------------------------------------------------------------
+--- unix domain
+---------------------------------------------------------------
+config.unix_domains = {
+  {
+    name = "unix",
+  },
+}
+
+-- This causes `wezterm` to act as though it was started as
+-- `wezterm connect unix` by default, connecting to the unix
+-- domain on startup.
+-- If you prefer to connect manually, leave out this line.
+config.default_gui_startup_args = { "connect", "unix" }
+---------------------------------------------------------------
 
 -- and finally, return the configuration to wezterm
 return config

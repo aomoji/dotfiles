@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
+local act_cb = wezterm.action_callback
 local utils = require("utils")
 
 local K = {}
@@ -54,6 +55,22 @@ K.tmux_keybinds = {
   { key = "p",     mods = "LEADER", action = act({ ActivateTabRelative = -1 }) },
   -- pane
   { key = "z",     mods = "LEADER", action = act.TogglePaneZoomState },
+  -- rename tab title
+  -- {
+  --   key = "E",
+  --   mods = "CTRL|SHIFT",
+  --   action = act.PromptInputLine({
+  --     description = "Enter new name for tab",
+  --     action = act_cb(function(window, pane, line)
+  --       -- line will be `nil` if they hit escape without entering anything
+  --       -- An empty string if they just hit enter
+  --       -- Or the actual line of text they wrote
+  --       if line then
+  --         window:active_tab():set_title(line)
+  --       end
+  --     end),
+  --   }),
+  -- },
 }
 
 -- tab selection by number
