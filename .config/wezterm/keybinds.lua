@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
+local mux = wezterm.mux
 local act_cb = wezterm.action_callback
 local utils = require("utils")
 
@@ -67,6 +68,22 @@ K.tmux_keybinds = {
 				-- Or the actual line of text they wrote
 				if line then
 					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
+	-- rename tab title
+	{
+		key = "$",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = "Enter new name for workspace",
+			action = act_cb(function(window, pane, line)
+				-- line will be `nil` if they hit escape without entering anything
+				-- An empty string if they just hit enter
+				-- Or the actual line of text they wrote
+				if line then
+					mux.rename_workspace(mux.get_active_workspace(), line)
 				end
 			end),
 		}),
