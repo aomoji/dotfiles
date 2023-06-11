@@ -327,6 +327,8 @@ return require("packer").startup(function()
               i = {
                 ["<Enter>"] = mapping.put("p"),
                 ["<s-Enter>"] = mapping.put("P"),
+                ["<c-b>"] = mapping.put("gp"),
+                ["<c-a>"] = mapping.put("gP"),
               }
             }
           },
