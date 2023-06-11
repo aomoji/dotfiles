@@ -304,6 +304,17 @@ return require("packer").startup(function()
     --`<C-e>`: creates new file in current directory, creates new directory if the name contains a trailing '/'
   })
 
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      vim.api.nvim_set_keymap("n", "<leader>hw", ":HopWord<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>hp", ":HopPattern<CR>", { noremap = true })
+    end
+  }
+
   use({
     "gbprod/yanky.nvim",
     config = function()
