@@ -126,20 +126,14 @@ return require("packer").startup(function()
     end,
   })
 
-  -- TODO:便利機能がないか見てみる
   use({
-    "akinsho/bufferline.nvim",
-    tag = "v2.*",
-    requires = { "nvim-tree/nvim-web-devicons" },
+    'romgrk/barbar.nvim',
+    requires = { "nvim-tree/nvim-web-devicons" , "lewis6991/gitsigns.nvim"},
     config = function()
-      require("bufferline").setup({
-        options = {
-          diagnostics = "nvim_lsp",
-        },
-      })
-      vim.api.nvim_set_keymap("n", "<C-p>", ":BufferLineCyclePrev<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "<C-n>", ":BufferLineCycleNext<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "<C-c>", ":BufferLinePickClose<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<C-p>", "<Cmd>BufferPrevious<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>BufferNext<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<C-c>", "<Cmd>BufferPickDelete<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>r", "<Cmd>BufferRestore<CR>", { noremap = true })
     end,
   })
 
@@ -305,7 +299,31 @@ return require("packer").startup(function()
   use({
     "gbprod/yanky.nvim",
     config = function()
+      local mapping = require("yanky.telescope.mapping")
       require("telescope").load_extension("yank_history")
+      require("yanky").setup({
+        ring = {
+          history_length = 100,
+          storage = "shada",
+          sync_with_numbered_registers = true,
+          cancel_event = "update",
+          ignore_registers = { "_" },
+        },
+        system_clipboard = {
+          sync_with_ring = true,
+        },
+        picker = {
+          telescope = {
+            use_default_mappings = false,
+            mappings = {
+              i = {
+                ["<Enter>"] = mapping.put("p"),
+                ["<s-Enter>"] = mapping.put("P"),
+              }
+            }
+          },
+        }
+      })
     end,
   })
 
