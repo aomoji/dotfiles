@@ -126,20 +126,14 @@ return require("packer").startup(function()
     end,
   })
 
-  -- TODO:便利機能がないか見てみる
   use({
-    "akinsho/bufferline.nvim",
-    tag = "v2.*",
-    requires = { "nvim-tree/nvim-web-devicons" },
+    "romgrk/barbar.nvim",
+    requires = { "nvim-tree/nvim-web-devicons", "lewis6991/gitsigns.nvim" },
     config = function()
-      require("bufferline").setup({
-        options = {
-          diagnostics = "nvim_lsp",
-        },
-      })
-      vim.api.nvim_set_keymap("n", "<C-p>", ":BufferLineCyclePrev<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "<C-n>", ":BufferLineCycleNext<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "<C-c>", ":BufferLinePickClose<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<C-p>", "<Cmd>BufferPrevious<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>BufferNext<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<C-c>", "<Cmd>BufferPickDelete<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>r", "<Cmd>BufferRestore<CR>", { noremap = true })
     end,
   })
 
@@ -267,6 +261,14 @@ return require("packer").startup(function()
     config = function()
       vim.cmd("let g:VM_maps = {}")
       vim.cmd("let g:VM_maps['Find Under'] = '<leader>m'")
+      -- * select words with Ctrl-N (like Ctrl-d in Sublime Text/VS Code)
+      -- * create cursors vertically with Ctrl-Down/Ctrl-Up
+      -- * select one character at a time with Shift-Arrows
+      -- * press n/N to get next/previous occurrence
+      -- * press [/] to select next/previous cursor
+      -- * press q to skip current and get next occurrence
+      -- * press Q to remove current cursor/selection
+      -- * start insert mode with i,a,I,A
     end,
   })
 
@@ -303,9 +305,47 @@ return require("packer").startup(function()
   })
 
   use({
+    "phaazon/hop.nvim",
+    branch = "v2", -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+      vim.api.nvim_set_keymap("n", "<leader>hw", ":HopWord<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>hp", ":HopPattern<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>ha", ":HopAnywhere<CR>", { noremap = true })
+    end,
+  })
+
+  use({
     "gbprod/yanky.nvim",
     config = function()
+      local mapping = require("yanky.telescope.mapping")
       require("telescope").load_extension("yank_history")
+      require("yanky").setup({
+        ring = {
+          history_length = 100,
+          storage = "shada",
+          sync_with_numbered_registers = true,
+          cancel_event = "update",
+          ignore_registers = { "_" },
+        },
+        system_clipboard = {
+          sync_with_ring = true,
+        },
+        picker = {
+          telescope = {
+            use_default_mappings = false,
+            mappings = {
+              i = {
+                ["<Enter>"] = mapping.put("p"),
+                ["<s-Enter>"] = mapping.put("P"),
+                ["<c-b>"] = mapping.put("gp"),
+                ["<c-a>"] = mapping.put("gP"),
+              },
+            },
+          },
+        },
+      })
     end,
   })
 

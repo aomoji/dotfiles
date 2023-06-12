@@ -72,6 +72,8 @@ K.tmux_keybinds = {
 			end),
 		}),
 	},
+	-- QuickSelect
+	{ key = "y", mods = "LEADER", action = "QuickSelect" },
 	-- rename tab title
 	{
 		key = "$",
