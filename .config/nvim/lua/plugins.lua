@@ -127,8 +127,8 @@ return require("packer").startup(function()
   })
 
   use({
-    'romgrk/barbar.nvim',
-    requires = { "nvim-tree/nvim-web-devicons" , "lewis6991/gitsigns.nvim"},
+    "romgrk/barbar.nvim",
+    requires = { "nvim-tree/nvim-web-devicons", "lewis6991/gitsigns.nvim" },
     config = function()
       vim.api.nvim_set_keymap("n", "<C-p>", "<Cmd>BufferPrevious<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>BufferNext<CR>", { noremap = true })
@@ -304,16 +304,17 @@ return require("packer").startup(function()
     --`<C-e>`: creates new file in current directory, creates new directory if the name contains a trailing '/'
   })
 
-  use {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
+  use({
+    "phaazon/hop.nvim",
+    branch = "v2", -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
-      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
       vim.api.nvim_set_keymap("n", "<leader>hw", ":HopWord<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>hp", ":HopPattern<CR>", { noremap = true })
-    end
-  }
+      vim.api.nvim_set_keymap("n", "<leader>ha", ":HopAnywhere<CR>", { noremap = true })
+    end,
+  })
 
   use({
     "gbprod/yanky.nvim",
@@ -340,10 +341,10 @@ return require("packer").startup(function()
                 ["<s-Enter>"] = mapping.put("P"),
                 ["<c-b>"] = mapping.put("gp"),
                 ["<c-a>"] = mapping.put("gP"),
-              }
-            }
+              },
+            },
           },
-        }
+        },
       })
     end,
   })
