@@ -41,6 +41,15 @@ config.enable_scroll_bar = true
 config.tab_bar_at_bottom = true
 -- blinking cursor
 config.default_cursor_style = "BlinkingBlock"
+-- padding
+config.window_padding = {
+	left = 30,
+	right = 30,
+	top = 50,
+	bottom = 30,
+}
+-- decoration
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 -----------------------------------------------------------------
 
 -----------------------------------------------------------------
