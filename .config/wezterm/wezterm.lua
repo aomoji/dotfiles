@@ -37,8 +37,6 @@ config.font_size = 14.0
 config.front_end = "WebGpu"
 -- Scroll bar.
 config.enable_scroll_bar = true
--- Hide tab bar.
-config.hide_tab_bar_if_only_one_tab = true
 -- Tab bar at bottom.
 config.tab_bar_at_bottom = true
 -- blinking cursor
