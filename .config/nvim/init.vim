@@ -20,6 +20,7 @@ nnoremap ; :
 nnoremap : ;
 set fileencodings=utf-8,cp932 " 読み込み時の文字コード
 set clipboard+=unnamed " クリップボードを利用
+set guicursor=a:blinkon1 " カーソルの点滅
 set notitle
 nnoremap j gj
 nnoremap k gk
