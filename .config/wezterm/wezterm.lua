@@ -10,7 +10,7 @@ local config = {}
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
-  config = wezterm.config_builder()
+	config = wezterm.config_builder()
 end
 
 -- This is where you actually apply your config choices
@@ -19,14 +19,14 @@ end
 --- color scheme
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
-config.color_scheme = "tokyonight_night"
+config.color_scheme = "rose-pine-moon"
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
 --- font
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
-config.font = wezterm.font "Cica"
+config.font = wezterm.font("Cica")
 config.font_size = 14.0
 ---------------------------------------------------------------
 
@@ -37,10 +37,19 @@ config.font_size = 14.0
 config.front_end = "WebGpu"
 -- Scroll bar.
 config.enable_scroll_bar = true
--- Hide tab bar.
-config.hide_tab_bar_if_only_one_tab = true
 -- Tab bar at bottom.
 config.tab_bar_at_bottom = true
+-- blinking cursor
+config.default_cursor_style = "BlinkingBlock"
+-- padding
+config.window_padding = {
+	left = 30,
+	right = 30,
+	top = 50,
+	bottom = 30,
+}
+-- decoration
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 -----------------------------------------------------------------
 
 -----------------------------------------------------------------
@@ -48,9 +57,9 @@ config.tab_bar_at_bottom = true
 ---------------------------------------------------------------
 -- leader key
 config.leader = {
-  key = "q",
-  mods = "CTRL",
-  timeout_milliseconds = 2000,
+	key = "q",
+	mods = "CTRL",
+	timeout_milliseconds = 2000,
 }
 -- Set keybinds.
 config.keys = keybinds.create_keybinds()
@@ -67,9 +76,9 @@ config.mouse_bindings = mousebinds.mouse_bindings
 --- unix domain
 ---------------------------------------------------------------
 config.unix_domains = {
-  {
-    name = "unix",
-  },
+	{
+		name = "unix",
+	},
 }
 
 -- This causes `wezterm` to act as though it was started as

@@ -107,11 +107,23 @@ return require("packer").startup(function()
     end,
   })
 
-  use({
-    "folke/tokyonight.nvim",
+  -- use({
+  --   "folke/tokyonight.nvim",
+  --   config = function()
+  --     vim.cmd("colorscheme tokyonight-night")
+  --   end,
+  -- })
+
+  use({ 'rose-pine/neovim', as = 'rose-pine',
     config = function()
-      vim.cmd("colorscheme tokyonight-night")
-    end,
+      require('rose-pine').setup({
+        --- @usage 'auto'|'main'|'moon'|'dawn'
+        variant = 'moon',
+        --- @usage 'main'|'moon'|'dawn'
+        dark_variant = 'moon',
+      })
+      vim.cmd('colorscheme rose-pine')
+    end
   })
 
   -- TODO:便利機能がないか見てみる
