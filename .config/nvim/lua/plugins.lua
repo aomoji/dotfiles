@@ -126,7 +126,6 @@ return require("packer").startup(function()
     end
   })
 
-  -- TODO:便利機能がないか見てみる
   use({
     "nvim-tree/nvim-tree.lua",
     requires = {
