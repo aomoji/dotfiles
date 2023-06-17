@@ -19,7 +19,7 @@ end
 --- color scheme
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
-config.color_scheme = "rose-pine-moon"
+config.color_scheme = "Rosé Pine (base16)"
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
