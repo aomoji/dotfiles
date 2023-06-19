@@ -301,6 +301,7 @@ return require("packer").startup(function()
       vim.api.nvim_set_keymap("n", "<leader>fa", "<Cmd>Telescope marks<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>fh", "<Cmd>Telescope command_history<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>fr", "<Cmd>Telescope registers<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>gs", "<Cmd>Telescope git_status<CR>", { noremap = true })
       vim.api.nvim_set_keymap(
         "n",
         "<leader>bf",
