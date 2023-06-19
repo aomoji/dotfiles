@@ -53,14 +53,6 @@ set hidden " 保存されていないファイルがあるときでも別のフ�
 " nnoremap <leader>n :noh<CR>
 nnoremap <ESC><ESC> :nohl<CR>
 
-" shellの設定 for coc-fzf-preview
-if executable('fish')
-    " use fish for embedded terminals
-    set shell=fish
-    " use bash for else
-    let $SHELL = 'bash'
-endif
-
 set termguicolors
 syntax on " 構文毎に文字色を変化させる
 
@@ -92,4 +84,10 @@ if has("autocmd")
         \   exe "normal! g'\"" |
         \ endif
 endif
+""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+" 起動を早める
+""""""""""""""""""""""""""""""
+lua vim.loader.enable()
 """"""""""""""""""""""""""""""
