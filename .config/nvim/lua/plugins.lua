@@ -444,11 +444,7 @@ return require("packer").startup(function()
           vim.keymap.set('n', '<space>fm', function()
             vim.lsp.buf.format { async = true }
           end, opts)
-          vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics, {
-              virtual_text = false
-            }
-          )
+          vim.diagnostic.config({virtual_text = false})
         end,
       })
     end,
