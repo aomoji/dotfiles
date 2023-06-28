@@ -43,9 +43,9 @@ config.tab_bar_at_bottom = true
 config.default_cursor_style = "BlinkingBlock"
 -- padding
 config.window_padding = {
-	left = 30,
-	right = 30,
-	top = 50,
+	left = 20,
+	right = 20,
+	top = 40,
 	bottom = 30,
 }
 -- decoration
