@@ -36,20 +36,20 @@ config.font_size = 12.0
 -- Use GPU accelerated rasterization.
 config.front_end = "WebGpu"
 -- Scroll bar.
-config.enable_scroll_bar = true
+config.enable_scroll_bar = false
 -- Tab bar at bottom.
 config.tab_bar_at_bottom = true
 -- blinking cursor
 config.default_cursor_style = "BlinkingBlock"
 -- padding
 config.window_padding = {
-	left = 20,
-	right = 20,
-	top = 40,
-	bottom = 30,
+	left = 10,
+	right = 10,
+	top = 20,
+	bottom = 10,
 }
 -- decoration
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.window_decorations = "RESIZE"
 -----------------------------------------------------------------
 
 -----------------------------------------------------------------
