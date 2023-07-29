@@ -409,6 +409,10 @@ return require("packer").startup(function()
         on_attach = on_attach,
         flags = lsp_flags,
       })
+      lspconfig.sqlls.setup({
+        on_attach = on_attach,
+        flags = lsp_flags,
+      })
       -- Global mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
@@ -474,14 +478,11 @@ return require("packer").startup(function()
           yaml = { require("formatter.filetypes.yaml").yamlfmt },
           rust = { require("formatter.filetypes.rust").rustfmt },
           sh = { require("formatter.filetypes.sh").shfmt },
-          sql = { 
-            require("formatter.filetypes.sql").sqlfmt,
+          sql = {
             function()
               return {
                 exe = "sqlfmt",
-                args = {
-                  "-"
-                },
+                args = { "-" },
                 stdin = true,
               }
             end
