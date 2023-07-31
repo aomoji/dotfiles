@@ -409,6 +409,10 @@ return require("packer").startup(function()
         on_attach = on_attach,
         flags = lsp_flags,
       })
+      lspconfig.sqlls.setup({
+        on_attach = on_attach,
+        flags = lsp_flags,
+      })
       -- Global mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
@@ -441,36 +445,70 @@ return require("packer").startup(function()
           vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
           vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
           vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          vim.keymap.set('n', '<space>fm', function()
-            vim.lsp.buf.format { async = true }
-          end, opts)
           vim.diagnostic.config({virtual_text = false})
         end,
       })
     end,
   })
 
-  use({
-    "jose-elias-alvarez/null-ls.nvim",
+  use {
+    'mhartington/formatter.nvim',
     config = function()
-      require("null-ls").setup({
-        -- debug = true,
-        capabilities = capabilities,
-        sources = {
-          require("null-ls").builtins.diagnostics.yamllint,
-          require("null-ls").builtins.formatting.rustfmt,
-          require("null-ls").builtins.formatting.stylua,
-          require("null-ls").builtins.formatting.shfmt,
-          require("null-ls").builtins.formatting.yamlfmt,
-          require("null-ls").builtins.formatting.sqlfluff.with({ extra_args = { "--dialect", "snowflake" } }),
-          require("null-ls").builtins.diagnostics.sqlfluff.with({
-            extra_args = { "--dialect", "snowflake" },
-          }),
-          require("null-ls").builtins.formatting.black,
-        },
-      })
-    end,
-  })
+      vim.api.nvim_set_keymap("n", "<leader>fm", ":Format<CR>", { noremap = true })
+      -- Utilities for creating configurations
+      local util = require "formatter.util"
+
+      -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+      require("formatter").setup {
+        -- Enable or disable logging
+        logging = true,
+        -- Set the log level
+        log_level = vim.log.levels.WARN,
+        -- All formatter configurations are opt-in
+        filetype = {
+          -- Formatter configurations for filetype "lua" go here
+          -- and will be executed in order
+          lua = {
+            -- "formatter.filetypes.lua" defines default configurations for the
+            -- "lua" filetype
+            require("formatter.filetypes.lua").stylua,
+          },
+          yaml = { require("formatter.filetypes.yaml").yamlfmt },
+          rust = { require("formatter.filetypes.rust").rustfmt },
+          sh = { require("formatter.filetypes.sh").shfmt },
+          sql = {
+            function()
+              return {
+                exe = "sqlfmt",
+                args = { "-" },
+                stdin = true,
+              }
+            end
+          },
+          python = { require("formatter.filetypes.python").black },
+          -- Use the special "*" filetype for defining formatter configurations on
+          -- any filetype
+          ["*"] = {
+            -- "formatter.filetypes.any" defines default configurations for any
+            -- filetype
+            require("formatter.filetypes.any").remove_trailing_whitespace
+          },
+        }
+      }
+    end
+  }
+
+  use {
+    'mfussenegger/nvim-lint',
+    config = function()
+      require('lint').linters_by_ft = {
+        sql = {'sqlfluff',},
+        sh = {'shellcheck',},
+        yaml = {'yamllint',},
+        python = {'pydocstyle','pyflakes',},
+      }
+    end
+  }
 
   use({
     "hrsh7th/nvim-cmp",
