@@ -500,27 +500,17 @@ return require("packer").startup(function()
     end
   }
 
-  -- use({
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   config = function()
-  --     require("null-ls").setup({
-  --       -- debug = true,
-  --       capabilities = capabilities,
-  --       sources = {
-  --         require("null-ls").builtins.diagnostics.yamllint,
-  --         require("null-ls").builtins.formatting.rustfmt,
-  --         require("null-ls").builtins.formatting.stylua,
-  --         require("null-ls").builtins.formatting.shfmt,
-  --         require("null-ls").builtins.formatting.yamlfmt,
-  --         require("null-ls").builtins.formatting.sqlfluff.with({ extra_args = { "--dialect", "snowflake" } }),
-  --         require("null-ls").builtins.diagnostics.sqlfluff.with({
-  --           extra_args = { "--dialect", "snowflake" },
-  --         }),
-  --         require("null-ls").builtins.formatting.black,
-  --       },
-  --     })
-  --   end,
-  -- })
+  use {
+    'mfussenegger/nvim-lint',
+    config = function()
+      require('lint').linters_by_ft = {
+        sql = {'sqlfluff',},
+        sh = {'shellcheck',},
+        yaml = {'yamllint',},
+        python = {'pydocstyle','pyflakes',},
+      }
+    end
+  }
 
   use({
     "hrsh7th/nvim-cmp",
