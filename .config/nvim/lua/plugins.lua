@@ -248,18 +248,16 @@ return require("packer").startup(function()
 					end,
 				},
 			}
-			vim.api.nvim_set_keymap("n", "<leader>con", "<cmd>lua require'dap'.continue()<cr>", { noremap = false })
-			vim.api.nvim_set_keymap("n", "<leader>ne", "<cmd>lua require'dap'.step_over()<cr>", { noremap = false })
-			vim.api.nvim_set_keymap("n", "<leader>sin", "<cmd>lua require'dap'.step_into()<cr>", { noremap = false })
-			vim.api.nvim_set_keymap("n", "<leader>sout", "<cmd>lua require'dap'.step_out()<cr>", { noremap = false })
+			vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", { noremap = false })
+			vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<cr>", { noremap = false })
+			vim.api.nvim_set_keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<cr>", { noremap = false })
+			vim.api.nvim_set_keymap("n", "<F12>", "<cmd>lua require'dap'.step_out()<cr>", { noremap = false })
 			vim.api.nvim_set_keymap(
 				"n",
 				"<leader>B",
 				"<cmd>lua require'dap'.toggle_breakpoint()<cr>",
 				{ noremap = false }
 			)
-			vim.api.nvim_set_keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl_open()<cr>", { noremap = false })
-			vim.api.nvim_set_keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", { noremap = false })
 		end,
 	})
 
@@ -371,8 +369,8 @@ return require("packer").startup(function()
 	use({
 		"rcarriga/nvim-dap-ui",
 		config = function()
-			vim.api.nvim_set_keymap("n", "<leader>dset", "<cmd>lua require('dapui').setup()<cr>", { noremap = false })
-			vim.api.nvim_set_keymap("n", "<leader>dtog", "<cmd>lua require('dapui').toggle()<cr>", { noremap = false })
+			vim.api.nvim_set_keymap("n", "<leader>ds", "<cmd>lua require('dapui').setup()<cr>", { noremap = false })
+			vim.api.nvim_set_keymap("n", "<leader>dt", "<cmd>lua require('dapui').toggle()<cr>", { noremap = false })
 		end,
 		requires = {
 			"mfussenegger/nvim-dap",
