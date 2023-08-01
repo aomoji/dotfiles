@@ -233,9 +233,9 @@ return require("packer").startup(function()
 		config = function()
 			local dap = require("dap")
 			dap.adapters.python = {
-				type = "executable",
-				command = os.getenv("HOME") .. "/opt/anaconda3/bin/python",
-				args = { "-m", "debugpy.adapter" },
+				type = "server",
+				command = "~/.local/share/nvim/mason/bin/debugpy",
+				args = { "--listen", "5678" },
 			}
 			dap.configurations.python = {
 				{
@@ -260,12 +260,6 @@ return require("packer").startup(function()
 			)
 			vim.api.nvim_set_keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl_open()<cr>", { noremap = false })
 			vim.api.nvim_set_keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", { noremap = false })
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>val",
-				"<cmd>lua require('dap.ui.widgets').hover()<cr>",
-				{ noremap = false }
-			)
 		end,
 	})
 
@@ -275,6 +269,7 @@ return require("packer").startup(function()
 		config = function()
 			require("mason-nvim-dap").setup({
 				ensure_installed = { "python", "codelldb" },
+				handlers = {},
 			})
 		end,
 	})
@@ -374,11 +369,14 @@ return require("packer").startup(function()
 	})
 
 	use({
-		"nvim-telescope/telescope-dap.nvim",
-		requires = { "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap" },
+		"rcarriga/nvim-dap-ui",
 		config = function()
-			require("telescope").load_extension("dap")
+			vim.api.nvim_set_keymap("n", "<leader>dset", "<cmd>lua require('dapui').setup()<cr>", { noremap = false })
+			vim.api.nvim_set_keymap("n", "<leader>dtog", "<cmd>lua require('dapui').toggle()<cr>", { noremap = false })
 		end,
+		requires = {
+			"mfussenegger/nvim-dap",
+		},
 	})
 
 	use({
