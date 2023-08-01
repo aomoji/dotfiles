@@ -27,7 +27,7 @@ config.color_scheme = "Rosé Pine (base16)"
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 12.0
+config.font_size = 13.0
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
