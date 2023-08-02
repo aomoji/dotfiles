@@ -225,6 +225,8 @@ return require("packer").startup(function()
 		"mfussenegger/nvim-dap",
 		config = function()
 			local dap = require("dap")
+			local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/")
+			local codelldb_path = mason_path .. "adapter/codelldb"
 			dap.adapters.python = {
 				type = "server",
 				command = "~/.local/share/nvim/mason/bin/debugpy",
@@ -241,6 +243,30 @@ return require("packer").startup(function()
 					end,
 				},
 			}
+      dap.adapters.codelldb = {
+        type = 'server',
+        port = "${port}",
+        executable = {
+          -- CHANGE THIS to your path!
+          command = codelldb_path,
+          args = {"--port", "${port}"},
+
+          -- On windows you may have to uncomment this:
+          -- detached = false,
+        }
+      }
+      dap.configurations.cpp = {
+        {
+          name = "Launch file",
+          type = "codelldb",
+          request = "launch",
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
+        },
+      }
 			vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", { noremap = false })
 			vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<cr>", { noremap = false })
 			vim.api.nvim_set_keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<cr>", { noremap = false })
@@ -265,24 +291,24 @@ return require("packer").startup(function()
 		end,
 	})
 
-	use({
-		"simrat39/rust-tools.nvim",
-		after = { "nvim-lspconfig" },
-		config = function()
-			local rt = require("rust-tools")
-			local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/")
-			local codelldb_path = mason_path .. "adapter/codelldb"
-			local liblldb_path = mason_path .. "lldb/lib/liblldb.dylib"
-			rt.setup({
-				server = {
-					on_attach = function(_, bufnr) end,
-				},
-				dap = {
-					adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-				},
-			})
-		end,
-	})
+	-- use({
+	-- 	"simrat39/rust-tools.nvim",
+	-- 	after = { "nvim-lspconfig" },
+	-- 	config = function()
+	-- 		local rt = require("rust-tools")
+	-- 		local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/")
+	-- 		local codelldb_path = mason_path .. "adapter/codelldb"
+	-- 		local liblldb_path = mason_path .. "lldb/lib/liblldb.dylib"
+	-- 		rt.setup({
+	-- 			server = {
+	-- 				on_attach = function(_, bufnr) end,
+	-- 			},
+	-- 			dap = {
+	-- 				adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- })
 
 	use({
 		"mg979/vim-visual-multi",
