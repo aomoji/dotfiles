@@ -107,13 +107,6 @@ return require("packer").startup(function()
 		end,
 	})
 
-	-- use({
-	--   "folke/tokyonight.nvim",
-	--   config = function()
-	--     vim.cmd("colorscheme tokyonight-night")
-	--   end,
-	-- })
-
 	use({
 		"rose-pine/neovim",
 		as = "rose-pine",
@@ -248,30 +241,6 @@ return require("packer").startup(function()
 					end,
 				},
 			}
-      dap.adapters.codelldb = {
-        type = 'server',
-        port = "${port}",
-        executable = {
-          -- CHANGE THIS to your path!
-          command = '~/.local/share/nvim/mason/bin/codelldb',
-          args = {"--port", "${port}"},
-
-          -- On windows you may have to uncomment this:
-          -- detached = false,
-        }
-      }
-      dap.configurations.rust = {
-        {
-          name = "Rust debug",
-          type = "codelldb",
-          request = "launch",
-          program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
-          end,
-          cwd = '${workspaceFolder}',
-          stopOnEntry = true,
-        },
-      }
 			vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", { noremap = false })
 			vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<cr>", { noremap = false })
 			vim.api.nvim_set_keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<cr>", { noremap = false })
@@ -292,6 +261,25 @@ return require("packer").startup(function()
 			require("mason-nvim-dap").setup({
 				ensure_installed = { "python", "codelldb" },
 				handlers = {},
+			})
+		end,
+	})
+
+	use({
+		"simrat39/rust-tools.nvim",
+		after = { "nvim-lspconfig" },
+		config = function()
+			local rt = require("rust-tools")
+			local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/")
+			local codelldb_path = mason_path .. "adapter/codelldb"
+			local liblldb_path = mason_path .. "lldb/lib/liblldb.dylib"
+			rt.setup({
+				server = {
+					on_attach = function(_, bufnr) end,
+				},
+				dap = {
+					adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+				},
 			})
 		end,
 	})
@@ -429,14 +417,6 @@ return require("packer").startup(function()
 				on_attach = on_attach,
 				flags = lsp_flags,
 			})
-			lspconfig.rust_analyzer.setup({
-				on_attach = on_attach,
-				flags = lsp_flags,
-				-- Server-specific settings...
-				settings = {
-					["rust-analyzer"] = {},
-				},
-			})
 			lspconfig.bashls.setup({
 				on_attach = on_attach,
 				flags = lsp_flags,
@@ -487,9 +467,6 @@ return require("packer").startup(function()
 		"mhartington/formatter.nvim",
 		config = function()
 			vim.api.nvim_set_keymap("n", "<leader>fm", ":Format<CR>", { noremap = true })
-			-- Utilities for creating configurations
-			local util = require("formatter.util")
-
 			-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 			require("formatter").setup({
 				-- Enable or disable logging
