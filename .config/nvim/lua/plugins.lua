@@ -22,7 +22,7 @@ return require("packer").startup(function()
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "bash", "fish", "python", "scala", "rust", "lua" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+				ensure_installed = { "bash", "fish", "python", "scala", "rust", "lua", "sql" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 				ignore_install = { "javascript" }, -- List of parsers to ignore installing
 				sync_install = true,
 				auto_install = true,
@@ -248,30 +248,30 @@ return require("packer").startup(function()
 					end,
 				},
 			}
-      dap.adapters.codelldb = {
-        type = 'server',
-        port = "${port}",
-        executable = {
-          -- CHANGE THIS to your path!
-          command = '~/.local/share/nvim/mason/bin/codelldb',
-          args = {"--port", "${port}"},
+			dap.adapters.codelldb = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					-- CHANGE THIS to your path!
+					command = "~/.local/share/nvim/mason/bin/codelldb",
+					args = { "--port", "${port}" },
 
-          -- On windows you may have to uncomment this:
-          -- detached = false,
-        }
-      }
-      dap.configurations.rust = {
-        {
-          name = "Rust debug",
-          type = "codelldb",
-          request = "launch",
-          program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
-          end,
-          cwd = '${workspaceFolder}',
-          stopOnEntry = true,
-        },
-      }
+					-- On windows you may have to uncomment this:
+					-- detached = false,
+				},
+			}
+			dap.configurations.rust = {
+				{
+					name = "Rust debug",
+					type = "codelldb",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+					end,
+					cwd = "${workspaceFolder}",
+					stopOnEntry = true,
+				},
+			}
 			vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", { noremap = false })
 			vim.api.nvim_set_keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<cr>", { noremap = false })
 			vim.api.nvim_set_keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<cr>", { noremap = false })
