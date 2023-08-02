@@ -22,7 +22,7 @@ return require("packer").startup(function()
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "bash", "fish", "python", "scala", "rust", "lua" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+				ensure_installed = { "bash", "fish", "python", "scala", "rust", "lua", "sql" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 				ignore_install = { "javascript" }, -- List of parsers to ignore installing
 				sync_install = true,
 				auto_install = true,
