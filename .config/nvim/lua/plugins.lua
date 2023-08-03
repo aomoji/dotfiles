@@ -320,45 +320,6 @@ return require("packer").startup(function()
 		end,
 	})
 
-	-- use({
-	-- 	"simrat39/rust-tools.nvim",
-	-- 	requires = {
-	-- 		"hrsh7th/cmp-nvim-lsp",
-	-- 		"hrsh7th/cmp-buffer",
-	-- 		"hrsh7th/cmp-path",
-	-- 		"hrsh7th/cmp-cmdline",
-	-- 		"hrsh7th/nvim-cmp",
-	-- 		"hrsh7th/cmp-nvim-lsp-signature-help",
-	-- 		"neovim/nvim-lspconfig",
-	-- 	},
-	-- 	after = { "nvim-lspconfig" },
-	-- 	config = function()
-	-- 		local rt = require("rust-tools")
-	-- 		local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/")
-	-- 		local codelldb_path = mason_path .. "adapter/codelldb"
-	-- 		local liblldb_path = mason_path .. "lldb/lib/liblldb.dylib"
-	-- 		rt.setup({
-	-- 			server = {
-	--          capabilities = require("cmp_nvim_lsp").default_capabilities(),
-	-- 				on_attach = function(_, bufnr)
-	--            -- Hover actions
-	--            vim.keymap.set("n", "<F2>", rt.hover_actions.hover_actions, { buffer = bufnr })
-	--            -- Code action groups
-	--            vim.keymap.set("n", "<F3>", rt.code_action_group.code_action_group, { buffer = bufnr })
-	--          end,
-	-- 			},
-	--        tools = {
-	--          hover_actions = {
-	--            auto_focus = true,
-	--          }
-	--        },
-	-- 			dap = {
-	-- 				adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- })
-
 	use({
 		"mg979/vim-visual-multi",
 		config = function()
