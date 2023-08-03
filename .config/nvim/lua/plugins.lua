@@ -459,6 +459,12 @@ return require("packer").startup(function()
 			lspconfig.lua_ls.setup({
 				on_attach = on_attach,
 				flags = lsp_flags,
+				Lua = {
+					workspace = {
+						maxPreload = 10000,
+						preloadFileSize = 1000,
+					},
+				},
 			})
 			lspconfig.pyright.setup({
 				on_attach = on_attach,
