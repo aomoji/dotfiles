@@ -93,6 +93,30 @@ return require("packer").startup(function()
 		"beauwilliams/focus.nvim",
 		config = function()
 			require("focus").setup()
+			local ignore_filetypes = { "NvimTree" }
+			local ignore_buftypes = {}
+
+			local augroup = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
+
+			vim.api.nvim_create_autocmd("WinEnter", {
+				group = augroup,
+				callback = function(_)
+					if vim.tbl_contains(ignore_buftypes, vim.bo.buftype) then
+						vim.b.focus_disable = true
+					end
+				end,
+				desc = "Disable focus autoresize for BufType",
+			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = augroup,
+				callback = function(_)
+					if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+						vim.b.focus_disable = true
+					end
+				end,
+				desc = "Disable focus autoresize for FileType",
+			})
 		end,
 	})
 
@@ -126,8 +150,13 @@ return require("packer").startup(function()
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icon
 		},
+		after = { "focus.nvim" },
 		config = function()
-			require("nvim-tree").setup({})
+			require("nvim-tree").setup({
+				view = {
+					width = 40,
+				},
+			})
 			vim.api.nvim_set_keymap("n", "<leader>fl", ":NvimTreeToggle<CR>", { noremap = true })
 		end,
 	})
