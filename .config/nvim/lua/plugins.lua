@@ -93,6 +93,30 @@ return require("packer").startup(function()
 		"beauwilliams/focus.nvim",
 		config = function()
 			require("focus").setup()
+			local ignore_filetypes = { "NvimTree" }
+			local ignore_buftypes = {}
+
+			local augroup = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
+
+			vim.api.nvim_create_autocmd("WinEnter", {
+				group = augroup,
+				callback = function(_)
+					if vim.tbl_contains(ignore_buftypes, vim.bo.buftype) then
+						vim.b.focus_disable = true
+					end
+				end,
+				desc = "Disable focus autoresize for BufType",
+			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = augroup,
+				callback = function(_)
+					if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+						vim.b.focus_disable = true
+					end
+				end,
+				desc = "Disable focus autoresize for FileType",
+			})
 		end,
 	})
 
@@ -126,8 +150,13 @@ return require("packer").startup(function()
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icon
 		},
+		after = { "focus.nvim" },
 		config = function()
-			require("nvim-tree").setup({})
+			require("nvim-tree").setup({
+				view = {
+					width = 40,
+				},
+			})
 			vim.api.nvim_set_keymap("n", "<leader>fl", ":NvimTreeToggle<CR>", { noremap = true })
 		end,
 	})
@@ -357,9 +386,9 @@ return require("packer").startup(function()
 			})
 			vim.api.nvim_set_keymap("n", "<leader>ff", "<Cmd>Telescope find_files hidden=true<CR>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<leader>fg", "<Cmd>Telescope live_grep<CR>", { noremap = true })
-			vim.api.nvim_set_keymap("n", "<leader>fo", "<Cmd>Telescope old_files<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<leader>fo", "<Cmd>Telescope oldfiles<CR>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<leader>fb", "<Cmd>Telescope buffers<CR>", { noremap = true })
-			vim.api.nvim_set_keymap("n", "<leader>fh", "<Cmd>Telescope help_tags<CR>", { noremap = true })
+			vim.api.nvim_set_keymap("n", "<leader>he", "<Cmd>Telescope help_tags<CR>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<leader>fc", "<Cmd>Telescope commands<CR>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<leader>fa", "<Cmd>Telescope marks<CR>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<leader>fh", "<Cmd>Telescope command_history<CR>", { noremap = true })
