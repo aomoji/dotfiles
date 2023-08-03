@@ -293,6 +293,15 @@ return require("packer").startup(function()
 
 	-- use({
 	-- 	"simrat39/rust-tools.nvim",
+	-- 	requires = {
+	-- 		"hrsh7th/cmp-nvim-lsp",
+	-- 		"hrsh7th/cmp-buffer",
+	-- 		"hrsh7th/cmp-path",
+	-- 		"hrsh7th/cmp-cmdline",
+	-- 		"hrsh7th/nvim-cmp",
+	-- 		"hrsh7th/cmp-nvim-lsp-signature-help",
+	-- 		"neovim/nvim-lspconfig",
+	-- 	},
 	-- 	after = { "nvim-lspconfig" },
 	-- 	config = function()
 	-- 		local rt = require("rust-tools")
@@ -301,8 +310,19 @@ return require("packer").startup(function()
 	-- 		local liblldb_path = mason_path .. "lldb/lib/liblldb.dylib"
 	-- 		rt.setup({
 	-- 			server = {
-	-- 				on_attach = function(_, bufnr) end,
+	--          capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	-- 				on_attach = function(_, bufnr)
+	--            -- Hover actions
+	--            vim.keymap.set("n", "<F2>", rt.hover_actions.hover_actions, { buffer = bufnr })
+	--            -- Code action groups
+	--            vim.keymap.set("n", "<F3>", rt.code_action_group.code_action_group, { buffer = bufnr })
+	--          end,
 	-- 			},
+	--        tools = {
+	--          hover_actions = {
+	--            auto_focus = true,
+	--          }
+	--        },
 	-- 			dap = {
 	-- 				adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
 	-- 			},
@@ -409,6 +429,16 @@ return require("packer").startup(function()
 		config = function()
 			vim.api.nvim_set_keymap("n", "<leader>ds", "<cmd>lua require('dapui').setup()<cr>", { noremap = false })
 			vim.api.nvim_set_keymap("n", "<leader>dt", "<cmd>lua require('dapui').toggle()<cr>", { noremap = false })
+			local dap, dapui = require("dap"), require("dapui")
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
 		end,
 		requires = {
 			"mfussenegger/nvim-dap",
