@@ -27,7 +27,7 @@ config.color_scheme = "Rouge 2"
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 12.5
+config.font_size = 12.0
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
