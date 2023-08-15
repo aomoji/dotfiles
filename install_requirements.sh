@@ -1,5 +1,7 @@
 #!/bin/sh
 
+brew install neovim
+brew install zsh
 brew install --cask wezterm
 brew install sk
 brew install lazygit
