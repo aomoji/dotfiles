@@ -4,6 +4,13 @@ mkdir -p ~/.config/
 
 CURRENT_DIR=$(cd $(dirname $0); pwd)
 
-ln -s $CURRENT_DIR/.config/nvim ~/.config/nvim
-ln -s $CURRENT_DIR/.config/wezterm ~/.config/wezterm
+ln -s $CURRENT_DIR/.config/nvim/init.vim ~/.config/nvim/init.vim
+ln -s $CURRENT_DIR/.config/nvim/lua/plugin.lua ~/.config/nvim/lua/plugin.lua
+
+ln -s $CURRENT_DIR/.config/wezterm/keybinds.lua ~/.config/wezterm/keybinds.lua
+ln -s $CURRENT_DIR/.config/wezterm/mousebinds.lua ~/.config/wezterm/mousebinds.lua
+ln -s $CURRENT_DIR/.config/wezterm/on.lua ~/.config/wezterm/on.lua
+ln -s $CURRENT_DIR/.config/wezterm/utils.lua ~/.config/wezterm/utils.lua
+ln -s $CURRENT_DIR/.config/wezterm/wezterm.lua ~/.config/wezterm/wezterm.lua
+
 ln -sf $CURRENT_DIR/.zshrc ~/.zshrc
