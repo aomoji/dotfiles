@@ -2,5 +2,7 @@
 
 mkdir -p ~/.config/
 
-ln -s ./.config/nvim ~/.config/nvim
-ln -s ./.config/wezterm ~/.config/wezterm
+CURRENT_DIR=$(cd $(dirname $0); pwd)
+
+ln -s $CURRENT_DIR/.config/nvim ~/.config/nvim
+ln -s $CURRENT_DIR/.config/wezterm ~/.config/wezterm
