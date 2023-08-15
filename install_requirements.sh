@@ -4,6 +4,7 @@ brew install neovim
 brew install zsh
 brew install --cask wezterm
 brew install sk
+brew install ripgrep
 brew install lazygit
 brew install direnv
 brew install node
