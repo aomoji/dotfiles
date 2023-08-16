@@ -9,3 +9,4 @@ brew install --cask lastpass
 brew install --cask clipy
 brew install --cask drawio
 brew install --cask google-japanese-ime
+brew install --cask notion
