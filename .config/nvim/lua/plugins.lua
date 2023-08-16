@@ -597,21 +597,21 @@ return require("packer").startup(function()
 			"hrsh7th/nvim-cmp",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"neovim/nvim-lspconfig",
-      "hrsh7th/cmp-vsnip",
-      "hrsh7th/vim-vsnip",
+			"hrsh7th/cmp-vsnip",
+			"hrsh7th/vim-vsnip",
 		},
 		config = function()
 			local cmp = require("cmp")
 			cmp.setup({
-        snippet = {
-          -- REQUIRED - you must specify a snippet engine
-          expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-          end,
-        },
+				snippet = {
+					-- REQUIRED - you must specify a snippet engine
+					expand = function(args)
+						vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+						-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+						-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+						-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+					end,
+				},
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
@@ -650,5 +650,26 @@ return require("packer").startup(function()
 	use({
 		"thinca/vim-qfreplace",
 		-- grep -> select -> ctr-q -> Qfreplace -> edit&save
+	})
+
+	use({
+		"cameron-wags/rainbow_csv.nvim",
+		config = function()
+			require("rainbow_csv").setup()
+		end,
+		-- optional lazy-loading below
+		module = {
+			"rainbow_csv",
+			"rainbow_csv.fns",
+		},
+		ft = {
+			"csv",
+			"tsv",
+			"csv_semicolon",
+			"csv_whitespace",
+			"csv_pipe",
+			"rfc_csv",
+			"rfc_semicolon",
+		},
 	})
 end)
