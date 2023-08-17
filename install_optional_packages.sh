@@ -1,6 +1,7 @@
 #!/bin/sh
 
 brew install xsv
+brew install nkf
 brew install --cask slack
 brew install --cask alfred
 brew install --cask spotify
