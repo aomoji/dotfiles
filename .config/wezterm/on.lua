@@ -49,7 +49,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	if has_unseen_output then
 		local title = tab_title(tab)
 		return {
-			{ Background = { Color = "maroon" } },
 			{ Text = " " .. title },
 		}
 	end
