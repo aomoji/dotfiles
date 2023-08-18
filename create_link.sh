@@ -6,7 +6,7 @@ CURRENT_DIR=$(cd $(dirname $0); pwd)
 
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/nvim/lua
-ln -s $CURRENT_DIR/.config/nvim/init.vim ~/.config/nvim/init.vim
+ln -s $CURRENT_DIR/.config/nvim/init.lua ~/.config/nvim/init.lua
 ln -s $CURRENT_DIR/.config/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 
 mkdir -p ~/.config/wezterm
