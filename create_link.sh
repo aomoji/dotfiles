@@ -8,6 +8,10 @@ mkdir -p ~/.config/nvim
 mkdir -p ~/.config/nvim/lua
 ln -s $CURRENT_DIR/.config/nvim/init.lua ~/.config/nvim/init.lua
 ln -s $CURRENT_DIR/.config/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
+ln -s $CURRENT_DIR/.config/nvim/lua/plugins ~/.config/nvim/lua/plugins
+ln -s $CURRENT_DIR/.config/nvim/lua/keymaps.lua ~/.config/nvim/lua/keymaps.lua
+ln -s $CURRENT_DIR/.config/nvim/lua/lazyvim.lua ~/.config/nvim/lua/lazyvim.lua
+ln -s $CURRENT_DIR/.config/nvim/lua/options.lua ~/.config/nvim/lua/options.lua
 
 mkdir -p ~/.config/wezterm
 ln -s $CURRENT_DIR/.config/wezterm/keybinds.lua ~/.config/wezterm/keybinds.lua
