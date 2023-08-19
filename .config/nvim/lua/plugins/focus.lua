@@ -1,5 +1,6 @@
 return {
 	"nvim-focus/focus.nvim",
+    commit = 'a994282f957840ee3419ad62a36be9d4e155560c',
 	config = function()
 		require("focus").setup()
 		local ignore_filetypes = { "NvimTree" }
