@@ -1,15 +1,19 @@
 return {
-	"mg979/vim-visual-multi",
-	config = function()
-		vim.cmd("let g:VM_maps = {}")
-		vim.cmd("let g:VM_maps['Find Under'] = '<leader>m'")
-		-- * select words with Ctrl-N (like Ctrl-d in Sublime Text/VS Code)
-		-- * create cursors vertically with Ctrl-Down/Ctrl-Up
-		-- * select one character at a time with Shift-Arrows
-		-- * press n/N to get next/previous occurrence
-		-- * press [/] to select next/previous cursor
-		-- * press q to skip current and get next occurrence
-		-- * press Q to remove current cursor/selection
-		-- * start insert mode with i,a,I,A
-	end,
+    -- See: https://github.com/smoka7/multicursors.nvim#multi-cursor-mode
+	"smoka7/multicursors.nvim",
+	event = "VeryLazy",
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter",
+		"smoka7/hydra.nvim",
+	},
+	opts = {},
+	cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+	keys = {
+		{
+			mode = { "v", "n" },
+			"<Leader>m",
+			"<cmd>MCstart<cr>",
+			desc = "Create a selection for selected text or word under the cursor",
+		},
+	},
 }
