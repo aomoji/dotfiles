@@ -6,6 +6,13 @@ return {
 			defaults = {
 				file_ignore_patterns = { ".git/" },
 			},
+			pickers = {
+				live_grep = {
+					additional_args = function(opts)
+						return { "--hidden" }
+					end,
+				},
+			},
 		})
 		vim.api.nvim_set_keymap("n", "<leader>ff", "<Cmd>Telescope find_files hidden=true<CR>", { noremap = true })
 		vim.api.nvim_set_keymap("n", "<leader>fg", "<Cmd>Telescope live_grep<CR>", { noremap = true })
