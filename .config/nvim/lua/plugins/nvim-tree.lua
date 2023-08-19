@@ -8,6 +8,20 @@ return {
 			view = {
 				width = 40,
 			},
+			renderer = {
+				indent_markers = {
+					enable = true,
+				},
+				icons = {
+					git_placement = "signcolumn",
+					show = {
+						file = true,
+						folder = true,
+						folder_arrow = true,
+						git = true,
+					},
+				},
+			},
 		})
 		vim.api.nvim_set_keymap("n", "<leader>fl", ":NvimTreeToggle<CR>", { noremap = true })
 	end,
