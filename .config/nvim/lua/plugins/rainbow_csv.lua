@@ -1,13 +1,6 @@
 return {
 	"cameron-wags/rainbow_csv.nvim",
-	config = function()
-		require("rainbow_csv").setup()
-	end,
-	-- optional lazy-loading below
-	-- module = {
-	-- 	"rainbow_csv",
-	-- 	"rainbow_csv.fns",
-	-- },
+	config = true,
 	ft = {
 		"csv",
 		"tsv",
@@ -16,5 +9,11 @@ return {
 		"csv_pipe",
 		"rfc_csv",
 		"rfc_semicolon",
+	},
+	cmd = {
+		"RainbowDelim",
+		"RainbowDelimSimple",
+		"RainbowDelimQuoted",
+		"RainbowMultiDelim",
 	},
 }
