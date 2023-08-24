@@ -3,7 +3,7 @@ local mux = wezterm.mux
 
 wezterm.on("update-right-status", function(window, domain)
 	window:set_right_status(wezterm.format({
-    { Background = { Color = "olive" } },
+    { Background = { Color = "gray" } },
 		{ Text = "    " .. window:active_workspace() .. "    " },
 	}))
 end)
@@ -22,9 +22,10 @@ end)
 
 function tab_title(tab_info)
 	local title = tab_info.tab_title
+	local id = tab_info.tab_id
 	-- if the tab title is explicitly set, take that
 	if title and #title > 0 then
-		return title
+		return id .. " ▷ " .. title
 	end
 	-- Otherwise, use the title from the active pane
 	-- in that tab
@@ -35,7 +36,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	if tab.is_active then
 		local title = tab_title(tab)
 		return {
-			{ Background = { Color = "navy" } },
+			{ Background = { Color = "black" } },
 			{ Text = " " .. title .. " " .. " - (" .. tab.active_pane.domain_name .. ")" },
 		}
 	end
