@@ -19,7 +19,8 @@ end
 --- color scheme
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
-config.color_scheme = "Rouge 2"
+-- config.color_scheme = "Rouge 2"
+config.color_scheme = "Rosé Pine Dawn (base16)"
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
@@ -27,7 +28,7 @@ config.color_scheme = "Rouge 2"
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 12.0
+config.font_size = 13.0
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
