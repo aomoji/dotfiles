@@ -39,7 +39,7 @@ config.front_end = "WebGpu"
 -- Scroll bar.
 config.enable_scroll_bar = false
 -- Tab bar at bottom.
-config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = false
 -- blinking cursor
 config.default_cursor_style = "BlinkingBlock"
 -- padding
