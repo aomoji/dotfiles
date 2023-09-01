@@ -24,6 +24,7 @@ api.nvim_create_autocmd({ "ColorScheme" }, {
 	pattern = { "*" },
 	command = [[highlight default ExtraWhitespace ctermbg=202 ctermfg=202 guibg=salmon]],
 })
+opt.laststatus = 3
 
 -- other
 opt.clipboard:append({ "unnamed" })
