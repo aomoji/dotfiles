@@ -3,13 +3,13 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ls='ls -G'
 alias l='ls -GFlah'
-alias fc='cd "$(find . -type d | sk)"'
+alias fc='cd "$(find . -type d | sk --color=light)"'
 alias vi='nvim'
 alias o='open'
 
 # 過去のコマンドの一覧
 function sk-history-selection() {
-    BUFFER=$(history 1 | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\*?\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' | sk --query "$LBUFFER")
+    BUFFER=$(history 1 | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\*?\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' | sk --query "$LBUFFER" --color=light)
     CURSOR=${#BUFFER}
     zle reset-prompt
 }
@@ -42,7 +42,7 @@ function sk-get-destination-from-cdr() {
   awk '{c=gsub("/","/"); print c,length($0),$0}' | \
   sort -n | \
   cut -d' ' -f3- | \
-  sk --query "$LBUFFER"
+  sk --query "$LBUFFER" --color=light
 }
 ### search a destination from cdr list and cd the destination
 function sk-cdr() {
@@ -59,7 +59,7 @@ bindkey '^x' sk-cdr
 
 #skでkill
 function sk-pkill() {
-  for pid in `ps aux | sk | awk '{ print $2 }'`
+  for pid in `ps aux | sk --color=light | awk '{ print $2 }'`
   do
     kill $pid
     echo "Killed ${pid}"
