@@ -3,7 +3,7 @@ local mux = wezterm.mux
 
 wezterm.on("update-right-status", function(window, domain)
 	window:set_right_status(wezterm.format({
-		{ Foreground = { Color = "#907aa9" } },
+		{ Foreground = { Color = "#b4637a" } },
 		{ Text = "    " .. window:active_workspace() .. "    " },
 	}))
 end)
