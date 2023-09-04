@@ -1,13 +1,6 @@
 local wezterm = require("wezterm")
 local mux = wezterm.mux
 
-wezterm.on("update-right-status", function(window, domain)
-	window:set_right_status(wezterm.format({
-    { Background = { Color = "gray" } },
-		{ Text = "    " .. window:active_workspace() .. "    " },
-	}))
-end)
-
 wezterm.on("gui-startup", function()
 	local tab, pane, window = mux.spawn_window({
 		workspace = "workspace 1",
@@ -36,7 +29,6 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	if tab.is_active then
 		local title = tab_title(tab)
 		return {
-			{ Background = { Color = "black" } },
 			{ Text = " " .. title .. " " .. " - (" .. tab.active_pane.domain_name .. ")" },
 		}
 	end

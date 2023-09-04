@@ -4,6 +4,9 @@ local keybinds = require("keybinds")
 local mousebinds = require("mousebinds")
 require("on")
 
+local colors = require('lua/rose-pine-dawn').colors()
+local window_frame = require('lua/rose-pine-dawn').window_frame()
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -19,8 +22,9 @@ end
 --- color scheme
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
--- config.color_scheme = "Rouge 2"
-config.color_scheme = "Rosé Pine Dawn (base16)"
+-- config.color_scheme = "Rosé Pine Dawn (base16)"
+config.colors = colors
+config.window_frame = window_frame
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
