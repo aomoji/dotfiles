@@ -6,6 +6,7 @@ alias l='ls -GFlah'
 alias fc='cd "$(find . -type d | sk --color=light)"'
 alias vi='nvim'
 alias o='open'
+alias delta='delta --light'
 
 # 過去のコマンドの一覧
 function sk-history-selection() {
