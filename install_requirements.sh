@@ -11,5 +11,7 @@ brew install node
 brew install luarocks
 brew install pyenv
 brew install poetry
+brew install pandoc
+npm install -g @compodoc/live-server
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 curl -sS https://starship.rs/install.sh | sh
