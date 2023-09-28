@@ -9,6 +9,6 @@ return {
 			dark_variant = "main",
 		})
 		vim.cmd("colorscheme rose-pine")
-		vim.o.background = "light"
+		vim.o.background = "dark"
 	end,
 }

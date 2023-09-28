@@ -4,8 +4,8 @@ local keybinds = require("keybinds")
 local mousebinds = require("mousebinds")
 require("on")
 
-local colors = require('lua/rose-pine-dawn').colors()
-local window_frame = require('lua/rose-pine-dawn').window_frame()
+local colors = require('lua/rose-pine').colors()
+local window_frame = require('lua/rose-pine').window_frame()
 
 -- This table will hold the configuration.
 local config = {}
