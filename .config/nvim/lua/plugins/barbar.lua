@@ -4,7 +4,7 @@ return {
 	config = function()
 		vim.api.nvim_set_keymap("n", "<C-p>", "<Cmd>BufferPrevious<CR>", { noremap = true })
 		vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>BufferNext<CR>", { noremap = true })
-		vim.api.nvim_set_keymap("n", "<C-c>", "<Cmd>BufferPickDelete<CR>", { noremap = true })
+		vim.api.nvim_set_keymap("n", "<leader>cl", "<Cmd>BufferPickDelete<CR>", { noremap = true })
 		vim.api.nvim_set_keymap("n", "<leader>r", "<Cmd>BufferRestore<CR>", { noremap = true })
 	end,
 }
