@@ -22,10 +22,10 @@ end)
 
 function tab_title(tab_info)
 	local title = tab_info.tab_title
-	local id = tab_info.tab_id
+	local index = tab_info.tab_index + 1
 	-- if the tab title is explicitly set, take that
 	if title and #title > 0 then
-		return id .. " ▷ " .. title
+		return "[ " .. index .. " ]" .. "  ▷  " .. title
 	end
 	-- Otherwise, use the title from the active pane
 	-- in that tab
