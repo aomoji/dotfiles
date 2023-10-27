@@ -2,6 +2,7 @@
 
 brew install xsv
 brew install nkf
+brew install tree
 brew install git-delta
 brew install --cask slack
 brew install --cask alfred
