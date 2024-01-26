@@ -6,6 +6,7 @@ return {
 			sh = { "shellcheck" },
 			yaml = { "yamllint" },
 			python = { "pydocstyle", "pyflakes" },
+			terraform = { "tflint" },
 		}
 	end,
 }

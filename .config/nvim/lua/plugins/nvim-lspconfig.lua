@@ -32,6 +32,7 @@ return {
 			on_attach = on_attach,
 			flags = lsp_flags,
 		})
+        lspconfig.terraformls.setup{}
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)

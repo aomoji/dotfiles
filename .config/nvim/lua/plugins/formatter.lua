@@ -20,6 +20,7 @@ return {
 				yaml = { require("formatter.filetypes.yaml").yamlfmt },
 				rust = { require("formatter.filetypes.rust").rustfmt },
 				sh = { require("formatter.filetypes.sh").shfmt },
+				markdown = { require("formatter.filetypes.markdown").markdownlint},
 				sql = {
 					function()
 						return {

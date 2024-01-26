@@ -4,7 +4,7 @@ return {
 	event = "VeryLazy",
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "bash", "fish", "python", "scala", "rust", "lua", "sql" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+			ensure_installed = { "bash", "fish", "python", "scala", "rust", "lua", "sql", "terraform"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 			ignore_install = { "javascript" }, -- List of parsers to ignore installing
 			sync_install = true,
 			auto_install = true,
