@@ -32,7 +32,7 @@ config.window_frame = window_frame
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 15.5
+config.font_size = 14.5
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------

@@ -1,4 +1,4 @@
 return {
 	"thinca/vim-qfreplace",
-	-- grep -> select -> ctr-q -> Qfreplace -> edit&save
+	-- grep -> Esc -> select by tab -> alt-q -> Qfreplace -> edit&save
 }
