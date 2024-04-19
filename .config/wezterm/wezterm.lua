@@ -4,8 +4,8 @@ local keybinds = require("keybinds")
 local mousebinds = require("mousebinds")
 require("on")
 
-local colors = require('lua/rose-pine').colors()
-local window_frame = require('lua/rose-pine').window_frame()
+local colors = require('lua/rose-pine-moon').colors()
+local window_frame = require('lua/rose-pine-moon').window_frame()
 
 -- This table will hold the configuration.
 local config = {}
@@ -32,7 +32,7 @@ config.window_frame = window_frame
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 14.5
+config.font_size = 15.5
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
