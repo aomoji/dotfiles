@@ -22,9 +22,9 @@ end
 --- color scheme
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
--- config.color_scheme = "Rosé Pine Dawn (base16)"
-config.colors = colors
-config.window_frame = window_frame
+config.color_scheme = "Aardvark Blue"
+-- config.colors = colors
+-- config.window_frame = window_frame
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------

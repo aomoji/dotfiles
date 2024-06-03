@@ -1,10 +1,13 @@
 return {
-	"romgrk/barbar.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons", "lewis6991/gitsigns.nvim" },
+	"akinsho/bufferline.nvim",
+	version = "*",
+	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
-		vim.api.nvim_set_keymap("n", "<C-p>", "<Cmd>BufferPrevious<CR>", { noremap = true })
-		vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>BufferNext<CR>", { noremap = true })
-		vim.api.nvim_set_keymap("n", "<leader>cl", "<Cmd>BufferPickDelete<CR>", { noremap = true })
-		vim.api.nvim_set_keymap("n", "<leader>r", "<Cmd>BufferRestore<CR>", { noremap = true })
+		vim.opt.termguicolors = true
+		require("bufferline").setup({})
+		vim.api.nvim_set_keymap("n", "<C-p>", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true })
+		vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>BufferLineCycleNext<CR>", { noremap = true })
+		vim.api.nvim_set_keymap("n", "<leader>cl", "<Cmd>BufferLinePickClose<CR>", { noremap = true })
+		vim.api.nvim_set_keymap("n", "<leader>gb", "<Cmd>BufferLinePick<CR>", { noremap = true })
 	end,
 }
