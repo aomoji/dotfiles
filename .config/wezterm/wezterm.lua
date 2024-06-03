@@ -31,8 +31,8 @@ config.window_frame = window_frame
 --- font
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
-config.font = wezterm.font("JetBrains Mono")
-config.font_size = 15.5
+config.font = wezterm.font("HackGen Console NF")
+config.font_size = 16.5
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
