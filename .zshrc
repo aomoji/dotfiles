@@ -1,8 +1,10 @@
 # Alias
+alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ls='ls -G'
-alias l='ls -GFlah'
+alias ls='eza'
+alias la='eza -Glah'
+alias lt='eza -T'
 alias fc='cd "$(find . -type d | sk)"'
 alias vi='nvim'
 alias o='open'
