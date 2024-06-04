@@ -25,7 +25,7 @@ autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 function ls-chpwd {
   local ls_result
-  ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS ls -CGF)
+  ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS ls -GF)
   local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
   if [ $ls_lines -gt 10 ]; then
     echo "$ls_result" | head -n 3
