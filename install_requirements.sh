@@ -12,7 +12,7 @@ brew install luarocks
 brew install pyenv
 brew install poetry
 brew install pandoc
-brew install exa
+brew install eza
 brew install bat
 npm install -g @compodoc/live-server
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
