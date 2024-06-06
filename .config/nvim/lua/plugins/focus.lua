@@ -2,7 +2,7 @@ return {
 	"nvim-focus/focus.nvim",
 	config = function()
 		require("focus").setup()
-		local ignore_filetypes = {}
+		local ignore_filetypes = { "NvimTree" }
 		local ignore_buftypes = {}
 
 		local augroup = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
