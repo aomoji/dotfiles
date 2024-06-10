@@ -1,8 +1,11 @@
 return {
-	"lukas-reineke/indent-blankline.nvim",
-	main = "ibl",
-    tag = "v3.4.2",
+	"shellRaining/hlchunk.nvim",
+	commit = "f4e8e1a12e16abbd05aca216837904a02c9049a0",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
-        require("ibl").setup()
+		require("hlchunk").setup({
+			chunk = { enable = true },
+			indent = { enable = true },
+		})
 	end,
 }
