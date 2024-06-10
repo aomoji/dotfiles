@@ -1,8 +1,14 @@
 return {
-	"Xuyuanp/scrollbar.nvim",
+	"petertriho/nvim-scrollbar",
+	dependencies = {
+		"lewis6991/gitsigns.nvim",
+		"kevinhwang91/nvim-hlslens",
+	},
 	config = function()
-		vim.cmd("autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()")
-		vim.cmd("autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()")
-		vim.cmd("autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()")
+		require("scrollbar").setup()
+		require("scrollbar.handlers.gitsigns").setup()
+		require("scrollbar.handlers.search").setup({
+            override_lens = function() end,
+        })
 	end,
 }
