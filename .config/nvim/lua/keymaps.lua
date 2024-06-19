@@ -14,3 +14,4 @@ api.nvim_set_keymap("i", "<c-j>", "<Down>", { noremap = true }) -- enable to mov
 api.nvim_set_keymap("i", "<c-k>", "<Up>", { noremap = true }) -- enable to move cursor in insert mode
 api.nvim_set_keymap("i", "<c-l>", "<Right>", { noremap = true }) -- enable to move cursor in insert mode
 api.nvim_set_keymap("n", "<ESC><ESC>", ":nohl<CR>", { noremap = true }) -- disable search highlight
+vim.keymap.set("t",  "<c-]>", [[<c-\><c-n>]]) -- for escaping terminal inside neovim
