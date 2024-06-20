@@ -25,9 +25,13 @@ return {
 			vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 		end)
 		require("ibl").setup({
-            scope = { highlight = highlight },
+			scope = { highlight = highlight },
+			indent = {
+				char = "▎",
+				tab_char = "▎",
+			},
 		})
-        hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+		hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 	end,
 	opts = {},
 }
