@@ -68,5 +68,6 @@ return {
 				vim.diagnostic.config({ virtual_text = false })
 			end,
 		})
+        vim.lsp.set_log_level("off") -- disable logging to avoid inflating log file
 	end,
 }
