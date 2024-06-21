@@ -27,8 +27,8 @@ return {
 		require("ibl").setup({
 			scope = { highlight = highlight },
 			indent = {
-				char = "▎",
-				tab_char = "▎",
+				char = "│",
+				tab_char = "│",
 			},
 		})
 		hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
