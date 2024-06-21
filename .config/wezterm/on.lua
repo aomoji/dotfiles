@@ -3,7 +3,7 @@ local mux = wezterm.mux
 
 wezterm.on("update-right-status", function(window, domain)
 	window:set_right_status(wezterm.format({
-		{ Foreground = { Color = "#ea9d34" } },
+		{ Foreground = { Color = "#bfdbfe" } },
 		{ Text = "    " .. window:active_workspace() .. "    " },
 	}))
 end)
@@ -25,7 +25,7 @@ function tab_title(tab_info)
 	local index = tab_info.tab_index + 1
 	-- if the tab title is explicitly set, take that
 	if title and #title > 0 then
-		return "[ " .. index .. " ]" .. "  ▷  " .. title
+		return  index  .. "  " .. title
 	end
 	-- Otherwise, use the title from the active pane
 	-- in that tab

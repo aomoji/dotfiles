@@ -24,5 +24,6 @@ mkdir -p ~/.config/wezterm/lua
 ln -s $CURRENT_DIR/.config/wezterm/lua/rose-pine-dawn.lua ~/.config/wezterm/lua/rose-pine-dawn.lua
 ln -s $CURRENT_DIR/.config/wezterm/lua/rose-pine-moon.lua ~/.config/wezterm/lua/rose-pine-moon.lua
 ln -s $CURRENT_DIR/.config/wezterm/lua/rose-pine.lua ~/.config/wezterm/lua/rose-pine.lua
+ln -s $CURRENT_DIR/.config/wezterm/lua/aardvark_blue.lua ~/.config/wezterm/lua/aardvark_blue.lua
 
 ln -sf $CURRENT_DIR/.zshrc ~/.zshrc
