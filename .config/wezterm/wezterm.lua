@@ -54,7 +54,7 @@ config.window_padding = {
 	bottom = 10,
 }
 -- decoration
-config.window_decorations = "RESIZE"
+config.window_decorations = "TITLE | RESIZE"
 -----------------------------------------------------------------
 
 -----------------------------------------------------------------
