@@ -50,7 +50,7 @@ config.default_cursor_style = "BlinkingBlock"
 config.window_padding = {
 	left = 10,
 	right = 10,
-	top = 20,
+	top = 10,
 	bottom = 10,
 }
 -- decoration
