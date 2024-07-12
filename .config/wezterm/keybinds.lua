@@ -54,6 +54,9 @@ K.tmux_keybinds = {
 	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
 	{ key = "n", mods = "LEADER", action = act({ ActivateTabRelative = 1 }) },
 	{ key = "p", mods = "LEADER", action = act({ ActivateTabRelative = -1 }) },
+    -- tab move
+	{ key = "<", mods = "LEADER", action = act({ MoveTabRelative = -1 }) },
+	{ key = ">", mods = "LEADER", action = act({ MoveTabRelative = 1 }) },
 	-- pane
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	-- rename tab title
