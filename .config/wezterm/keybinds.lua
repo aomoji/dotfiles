@@ -54,7 +54,10 @@ K.tmux_keybinds = {
 	{ key = "t", mods = "LEADER", action = act.ShowTabNavigator },
 	{ key = "n", mods = "LEADER", action = act({ ActivateTabRelative = 1 }) },
 	{ key = "p", mods = "LEADER", action = act({ ActivateTabRelative = -1 }) },
-    -- tab move
+	-- window selection
+	{ key = "i", mods = "LEADER", action = act.ActivateWindowRelative(1) },
+	{ key = "u", mods = "LEADER", action = act.ActivateWindowRelative(-1) },
+	-- tab move
 	{ key = "<", mods = "LEADER", action = act({ MoveTabRelative = -1 }) },
 	{ key = ">", mods = "LEADER", action = act({ MoveTabRelative = 1 }) },
 	-- pane
