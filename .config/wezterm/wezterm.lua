@@ -54,7 +54,7 @@ config.window_padding = {
 	bottom = 10,
 }
 -- decoration
-config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "RESIZE"
 -----------------------------------------------------------------
 
 -----------------------------------------------------------------
@@ -80,17 +80,17 @@ config.mouse_bindings = mousebinds.mouse_bindings
 -----------------------------------------------------------------
 --- unix domain
 ---------------------------------------------------------------
-config.unix_domains = {
-	{
-		name = "unix",
-	},
-}
+-- config.unix_domains = {
+-- 	{
+-- 		name = "unix",
+-- 	},
+-- }
 
 -- This causes `wezterm` to act as though it was started as
 -- `wezterm connect unix` by default, connecting to the unix
 -- domain on startup.
 -- If you prefer to connect manually, leave out this line.
-config.default_gui_startup_args = { "connect", "unix" }
+-- config.default_gui_startup_args = { "connect", "unix" }
 ---------------------------------------------------------------
 
 -- and finally, return the configuration to wezterm
