@@ -18,6 +18,16 @@ return {
 						return { "--hidden" }
 					end,
 				},
+				buffers = {
+					mappings = {
+						n = {
+							["<C-d>"] = require("telescope.actions").delete_buffer,
+						},
+						i = {
+							["<C-d>"] = require("telescope.actions").delete_buffer,
+						},
+					},
+				},
 			},
 			extensions = {
 				live_grep_args = {
