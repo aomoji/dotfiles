@@ -116,18 +116,18 @@ wezterm.on("update-status", function(window, _)
 end)
 
 wezterm.on("gui-startup", function()
-	local tab, pane, window = mux.spawn_window({
+	local _, _, _ = mux.spawn_window({
 		workspace = "workspace 1",
 	})
-	local tab, pane, window = mux.spawn_window({
+	local _, _, _ = mux.spawn_window({
 		workspace = "workspace 2",
 	})
-	local tab, pane, window = mux.spawn_window({
+	local _, _, _ = mux.spawn_window({
 		workspace = "workspace 3",
 	})
 end)
 
-function tab_title(tab_info)
+local function tab_title(tab_info)
 	local title = tab_info.tab_title
 	local index = tab_info.tab_index + 1
 	-- if the tab title is explicitly set, take that
@@ -139,7 +139,7 @@ function tab_title(tab_info)
 	return tab_info.active_pane.title
 end
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+wezterm.on("format-tab-title", function(tab)
 	if tab.is_active then
 		local title = tab_title(tab)
 		return {
