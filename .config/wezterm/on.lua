@@ -1,9 +1,18 @@
 local wezterm = require("wezterm")
 local mux = wezterm.mux
 
-wezterm.on("update-right-status", function(window, domain)
+wezterm.on("update-right-status", function(window, _)
+	local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+	local color_scheme = window:effective_config().resolved_palette
+	local fg = color_scheme.foreground
+	local cursor_bg = color_scheme.cursor_bg
 	window:set_right_status(wezterm.format({
-		{ Foreground = { Color = "#bfdbfe" } },
+		{ Background = { Color = "none" } },
+		{ Foreground = { Color = cursor_bg } },
+		{ Text = SOLID_LEFT_ARROW },
+
+		{ Background = { Color = cursor_bg } },
+		{ Foreground = { Color = fg } },
 		{ Text = "    " .. window:active_workspace() .. "    " },
 	}))
 end)
@@ -25,7 +34,7 @@ function tab_title(tab_info)
 	local index = tab_info.tab_index + 1
 	-- if the tab title is explicitly set, take that
 	if title and #title > 0 then
-		return  index  .. "  " .. title
+		return index .. "  " .. title
 	end
 	-- Otherwise, use the title from the active pane
 	-- in that tab
