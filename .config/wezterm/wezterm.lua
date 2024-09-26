@@ -55,6 +55,10 @@ config.window_padding = {
 }
 -- decoration
 config.window_decorations = "RESIZE"
+-- tab
+config.show_new_tab_button_in_tab_bar = false
+-- nightly only
+-- config.show_close_tab_button_in_tabs = false
 -----------------------------------------------------------------
 
 -----------------------------------------------------------------
