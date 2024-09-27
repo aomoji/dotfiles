@@ -71,6 +71,22 @@ function sk-pkill() {
 }
 alias skkill="sk-pkill"
 
+# ghqでリポジトリを選択
+function sk-repository-selection() {
+    ghq list -p | sk -p "repositories > " --query "$LBUFFER"
+}
+function sk-ghq() {
+  local destination="$(sk-repository-selection)"
+  if [ -n "$destination" ]; then
+    BUFFER="cd $destination"
+    zle accept-line
+  else
+    zle reset-prompt
+  fi
+}
+zle -N sk-ghq
+bindkey '^g' sk-ghq
+
 # wezterm
 export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"
 # starship

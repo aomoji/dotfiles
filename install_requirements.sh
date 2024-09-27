@@ -14,6 +14,8 @@ brew install poetry
 brew install pandoc
 brew install eza
 brew install bat
+brew install ghq
+git config --global ghq.root "${HOME}/projects"
 npm install -g @compodoc/live-server
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 curl -sS https://starship.rs/install.sh | sh
