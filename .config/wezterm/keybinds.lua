@@ -51,6 +51,7 @@ K.tmux_keybinds = {
 	{ key = "l", mods = "LEADER", action = act({ ActivatePaneDirection = "Right" }) },
 	{ key = "j", mods = "LEADER", action = act({ ActivatePaneDirection = "Down" }) },
 	{ key = "k", mods = "LEADER", action = act({ ActivatePaneDirection = "Up" }) },
+	{ key = "m", mods = "LEADER", action = act.PaneSelect },
 	{ key = "/", mods = "LEADER", action = act.Search("CurrentSelectionOrEmptyString") },
 	-- workspace selection
 	{ key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES|TABS" }) },
