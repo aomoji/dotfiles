@@ -1,0 +1,68 @@
+;; Text after double-semicolons are single-line comments.
+
+#|
+One defcfg entry may be added, which is used for configuration key-pairs. These
+configurations change kanata's behaviour at a more global level than the other
+configuration entries.
+|#
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  spc ;; layer key
+  h j k l ;; arrows
+  u i ;; alt + <- and alt + ->
+  o ;; open alfred
+  m , ;; tab moving
+  t g ;; pgup and pgdn
+  b n ;; home and end
+  z x ;; screenshot
+  v ;; open clippy
+  e r ;; back and forward
+  f ;; F10 to convert to alphabet
+  d ;; F7 to convert to katakana
+)
+
+(deflayer default
+  @spc_layer _ _ _ _
+  _ _
+  _
+  _ _
+  _ _
+  _ _
+  _ _
+  _
+  _ _
+  _
+  _
+)
+
+(deflayer spc_layer
+  _ left down up rght
+  @word_left @word_right
+  @open_alfred
+  @tab_left @tab_right
+  pgup pgdn
+  home end
+  @screenshot_clipboard @screenshot_save
+  @open_clippy
+  @back @forward
+  f10
+  f7
+)
+
+(defalias
+  spc_layer (tap-hold 50 200 spc (layer-toggle spc_layer))
+  word_left A-left
+  word_right A-rght
+  open_alfred RM-spc
+  tab_left C-S-tab
+  tab_right C-tab
+  screenshot_clipboard M-C-S-4
+  screenshot_save M-S-4
+  open_clippy RM-S-v
+  back RM-[
+  forward RM-]
+)
