@@ -131,3 +131,7 @@ eval "$(pyenv init -)"
 
 # word split
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/kaito.oshiro/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
