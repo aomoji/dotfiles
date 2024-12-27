@@ -54,7 +54,7 @@ configuration entries.
 )
 
 (defalias
-  spc_layer (tap-hold 50 200 spc (layer-toggle spc_layer))
+  spc_layer (tap-hold 10 200 spc (layer-toggle spc_layer))
   word_left A-left
   word_right A-rght
   open_alfred RM-spc
