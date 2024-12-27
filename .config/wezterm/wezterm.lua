@@ -25,8 +25,9 @@ end
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
 -- config.color_scheme = "Aardvark Blue"
-config.colors = colors
-config.window_frame = window_frame
+config.color_scheme = "Everforest Dark (Gogh)"
+-- config.colors = colors
+-- config.window_frame = window_frame
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
@@ -34,7 +35,7 @@ config.window_frame = window_frame
 ---------------------------------------------------------------
 -- For example, changing the color scheme:
 config.font = wezterm.font("HackGen Console NF")
-config.font_size = 12.0
+config.font_size = 13.0
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
@@ -53,7 +54,7 @@ config.window_padding = {
 	left = 10,
 	right = 10,
 	top = 10,
-	bottom = 50,
+	bottom = 10,
 }
 -- decoration
 config.window_decorations = "RESIZE"
