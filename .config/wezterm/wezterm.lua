@@ -33,7 +33,6 @@ config.color_scheme = "Everforest Dark (Gogh)"
 -----------------------------------------------------------------
 --- font
 ---------------------------------------------------------------
--- For example, changing the color scheme:
 config.font = wezterm.font("HackGen Console NF")
 config.font_size = 13.0
 ---------------------------------------------------------------
