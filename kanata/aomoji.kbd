@@ -10,6 +10,11 @@ configuration entries.
   process-unmapped-keys yes
 )
 
+(defvar
+  tt 200 ;; tap-time
+  ht 160 ;; hold-time
+)
+
 (defsrc
   spc ;; layer key
   h j k l ;; arrows
@@ -23,6 +28,7 @@ configuration entries.
   e r ;; back and forward
   f ;; F10 to convert to alphabet
   d ;; F7 to convert to katakana
+  fn f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 ;; function keys
 )
 
 (deflayer default
@@ -37,6 +43,7 @@ configuration entries.
   _ _
   _
   _
+  @fn_layer _ _ _ _ _ _ _ _ _ _ _ _
 )
 
 (deflayer spc_layer
@@ -51,10 +58,27 @@ configuration entries.
   @back @forward
   f10
   f7
+  _ _ _ _ _ _ _ _ _ _ _ _ _
+)
+
+(deflayer fn_layer
+  _ _ _ _ _
+  _ _
+  _
+  _ _
+  _ _
+  _ _
+  _ _
+  _
+  _ _
+  _
+  _
+  _ brdn brup _    _    _    _    prev    pp    next    mute vold volu
 )
 
 (defalias
-  spc_layer (tap-hold 10 200 spc (layer-toggle spc_layer))
+  spc_layer (tap-hold $tt $ht spc (layer-toggle spc_layer))
+  fn_layer (layer-while-held fn_layer)
   word_left A-left
   word_right A-rght
   open_alfred RM-spc
