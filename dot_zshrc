@@ -1,0 +1,5 @@
+ZSH_RC_DIR="$HOME/.zsh"
+
+for file in "$ZSH_RC_DIR"/*.zsh; do
+  [[ -r "$file" ]] && source "$file"
+done
