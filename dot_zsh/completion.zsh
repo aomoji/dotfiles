@@ -1,6 +1,7 @@
 # --------------------------
 # 補完システムの初期化（キャッシュ活用）
 
+fpath=(~/.zsh/completions $fpath)
 autoload -Uz compinit
 ZDOTDIR=${ZDOTDIR:-$HOME}
 

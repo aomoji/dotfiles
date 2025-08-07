@@ -1,0 +1,38 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "==> Setting up zsh completions for cargo-installed tools..."
+
+COMPLETION_DIR="$HOME/.zsh/completions"
+mkdir -p "$COMPLETION_DIR"
+
+# eza
+if [[ ! -f "$COMPLETION_DIR/_eza" ]]; then
+  echo "Downloading _eza completion..."
+  curl -fsSL https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza \
+    -o "$COMPLETION_DIR/_eza"
+else
+  echo "_eza already exists. Skipping."
+fi
+
+# bat
+if [[ ! -f "$COMPLETION_DIR/_bat" ]]; then
+  echo "Downloading _bat completion..."
+  curl -fsSL https://raw.githubusercontent.com/sharkdp/bat/master/assets/completions/bat.zsh.in \
+    -o "$COMPLETION_DIR/_bat"
+else
+  echo "_bat already exists. Skipping."
+fi
+
+# Remove zcompdump to rebuild completions
+ZCD="$HOME/.zcompdump"
+if compgen -G "$ZCD*" > /dev/null; then
+  echo "Removing zcompdump cache..."
+  rm -f "$ZCD"*
+fi
+
+echo "✅ Completion setup done. Ensure the following in your .zshrc:"
+echo ''
+echo '  fpath=(~/.zsh/completions $fpath)'
+echo '  autoload -Uz compinit && compinit'
+echo ''
