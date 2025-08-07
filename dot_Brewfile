@@ -4,8 +4,6 @@ brew "zsh"
 brew "lazygit"
 brew "direnv"
 brew "nkf"
-brew "git-delta"
-brew "uv"
 brew "fzf"
 
 # GUI apps (Cask)
