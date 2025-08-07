@@ -1,4 +1,4 @@
-shell="zsh"
+shell = "zsh"
 apply = ["defer"]
 
 [templates]

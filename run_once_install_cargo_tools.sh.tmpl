@@ -3,11 +3,11 @@ set -euo pipefail
 
 # Rustup で Rust & Cargo をインストール
 if ! command -v cargo >/dev/null 2>&1; then
-  echo "Rust をインストール中..."
+  echo "Installing rustup..."
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   export PATH="$HOME/.cargo/bin:$PATH"
 else
-  echo "Cargo はすでにインストール済みです。"
+  echo "Cargo is already installed."
 fi
 
 echo "==> Installing Rust tools from cargo package list..."
@@ -31,4 +31,9 @@ while read -r crate; do
 done < "$PACKAGE_FILE"
 
 # Other special cases.
-cargo install --git https://github.com/astral-sh/uv uv
+if ! command -v uv >/dev/null 2>&1; then
+    echo "Installing uv..."
+    cargo install --git https://github.com/astral-sh/uv uv
+else
+  echo "uv is already installed."
+fi
