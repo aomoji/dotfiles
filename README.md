@@ -20,3 +20,9 @@ cargoで管理するパッケージの追加インストールは以下を実行
 ```sh
 sh ./run_once_install_cargo_tools.sh.tmpl
 ```
+
+homebrewで管理するパッケージの追加インストールは以下を実行する。
+
+```sh
+brew bundle --file="${HOME}/.Brewfile"
+```
