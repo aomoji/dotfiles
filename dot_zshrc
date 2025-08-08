@@ -1,5 +1,17 @@
 ZSH_RC_DIR="$HOME/.zsh"
 
-for file in "$ZSH_RC_DIR"/*.zsh; do
-  [[ -r "$file" ]] && source "$file"
+zsh_files=(
+  env.zsh
+  options.zsh
+  plugins.zsh
+  init.zsh
+  completion.zsh
+  history.zsh
+  theme.zsh
+  aliases.zsh
+)
+
+for file in "${zsh_files[@]}"; do
+  full_path="$ZSH_RC_DIR/$file"
+  [[ -r "$full_path" ]] && source "$full_path"
 done

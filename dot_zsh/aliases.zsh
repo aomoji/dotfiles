@@ -1,13 +1,36 @@
 # --------------------------
-# IP アドレス確認用のエイリアス（外部IPを即座に表示）
-alias myip="curl http://ipecho.net/plain; echo"
-alias vi=nvim
-alias lg=lazygit
-alias ls='eza'
-alias la='eza -Glah'
-alias lt='eza -T'
-alias fc='cd "$(find . -type d | sk)"'
-alias vi='nvim'
-alias o='open'
-alias less="bat --theme='Monokai Extended Bright' --paging always"
-alias cat="bat --theme='Monokai Extended Bright'"
+# abbr 一括登録（重複定義を避けて高速化）
+
+# 展開後のカーソルの位置を % で指定できるようにする
+ABBR_SET_EXPANSION_CURSOR=1
+
+# 現在の定義済みの略語を1回だけ取得してキャッシュ
+_abbr_list="$(abbr list)"
+
+# 登録関数（未定義なら登録）
+_abbr() {
+  local name="$1"
+  shift
+  local expansion="$*"
+  if ! grep -q "^\"${name}\"" <<<"$_abbr_list"; then
+    abbr "$name=$expansion"
+  fi
+}
+
+# --------------------------
+_abbr myip 'curl http://ipecho.net/plain; echo'
+_abbr vi nvim
+_abbr lg lazygit
+_abbr ls 'eza'
+_abbr la 'eza -Glah'
+_abbr lt 'eza -T'
+_abbr o 'open'
+_abbr less "bat --theme='Monokai Extended Bright' --paging always"
+_abbr cat "bat --theme='Monokai Extended Bright'"
+# git関連のalias
+_abbr gs 'git status'
+_abbr ga 'git add'
+_abbr gc "git commit -m '%'"
+_abbr gp "git push origin $(git symbolic-ref --short HEAD)"
+_abbr gw 'git switch'
+_abbr gb 'git branch'

@@ -18,6 +18,13 @@ github = "Aloxaf/fzf-tab"
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
+apply = ["source"]
+
 [plugins.fast-syntax-highlighting]
 github = "zdharma/fast-syntax-highlighting"
 
