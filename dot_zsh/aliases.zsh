@@ -13,7 +13,7 @@ _abbr() {
   shift
   local expansion="$*"
   if ! grep -q "^\"${name}\"" <<<"$_abbr_list"; then
-    abbr "$name=$expansion"
+    abbr -f "$name=$expansion"
   fi
 }
 
@@ -31,6 +31,6 @@ _abbr cat "bat --theme='Monokai Extended Bright'"
 _abbr gs 'git status'
 _abbr ga 'git add'
 _abbr gc "git commit -m '%'"
-_abbr gp "git push origin $(git symbolic-ref --short HEAD)"
+_abbr gp "git push origin"
 _abbr gw 'git switch'
 _abbr gb 'git branch'
