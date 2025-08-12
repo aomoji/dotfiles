@@ -21,8 +21,22 @@ fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# cargo-update が無ければ入れる
+if ! command -v cargo-install-update >/dev/null 2>&1; then
+  cargo install cargo-update
+fi
+
+# 先に更新
+cargo install-update -a
+
 while read -r crate; do
-  if ! command -v "$crate" >/dev/null 2>&1; then
+  # crate名と実行ファイル名が異なるものの最小マップ
+  bin="$crate"
+  case "$crate" in
+    git-delta) bin="delta" ;;
+    skim)      bin="sk"    ;;
+  esac
+  if ! command -v "$bin" >/dev/null 2>&1; then
     echo "Installing $crate..."
     cargo install "$crate"
   else

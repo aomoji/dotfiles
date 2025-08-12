@@ -13,16 +13,12 @@ chezmoiのインストールとdotfilesの反映は次の通り行う。
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply aomoji
 ```
 
-## 導入後のパッケージの追加
+## 導入後のパッケージの追加・更新
 
-cargoで管理するパッケージの追加インストールは以下を実行する。
-
-```sh
-sh ./run_once_install_cargo_tools.sh.tmpl
-```
-
-homebrewで管理するパッケージの追加インストールは以下を実行する。
-
-```sh
-brew bundle --file="${HOME}/.Brewfile"
-```
+1. パッケージの追加
+    * homebrew: dot_Brewfileに追記
+    * cargo: packages.txtに追記
+1. 適用する
+    ```sh
+    chezmoi -v apply
+    ```
