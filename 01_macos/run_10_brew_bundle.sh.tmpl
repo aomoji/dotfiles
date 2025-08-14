@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 set -euo pipefail
 
@@ -12,4 +12,4 @@ brew update > /dev/null
 
 brew bundle --file="${HOME}/.Brewfile"
 
-{{- end }}
+{{- end -}}

@@ -1,4 +1,4 @@
-{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") }}
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") -}}
 #!/bin/bash
 set -euo pipefail
 
@@ -21,4 +21,4 @@ done
 
 echo "✅ Fedora package install step done."
 
-{{- end }}
+{{- end -}}

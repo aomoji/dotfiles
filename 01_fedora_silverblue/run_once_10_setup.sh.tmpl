@@ -1,4 +1,4 @@
-{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") }}
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") -}}
 #!/bin/bash
 set -euo pipefail
 
@@ -13,4 +13,4 @@ rpm-ostree refresh-md --force
 echo
 echo "ℹ️  Please run 'systemctl reboot', then run 'chezmoi apply' again."
 
-{{- end }}
+{{- end -}}
