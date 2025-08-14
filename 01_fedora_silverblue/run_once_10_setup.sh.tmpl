@@ -8,7 +8,7 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 rpm-ostree install -y gnome-tweaks
 
 # download repo files for lazygit
-sudo curl --output-dir "/etc/yum.repos.d/" --remote-name  https://copr.fedorainfracloud.org/coprs/dejan/lazygit/repo/fedora-{{ .chezmoi.osRelease.VERSION_ID }}/dejan-lazygit-fedora-{{ .chezmoi.osRelease.VERSION_ID }}.repo
+sudo curl --output-dir "/etc/yum.repos.d/" --remote-name  https://copr.fedorainfracloud.org/coprs/dejan/lazygit/repo/fedora-{{ .chezmoi.osRelease.version_id }}/dejan-lazygit-fedora-{{ .chezmoi.osRelease.version_id }}.repo
 rpm-ostree refresh-md --force
 
 echo
