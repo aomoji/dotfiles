@@ -3,7 +3,12 @@
 set -euo pipefail
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-rpm-ostree install -y gnome-tweaks
+
+if rpm -q gnome-tweaks >/dev/null 2>&1; then
+  echo "✓ $pkg already installed."
+else
+  rpm-ostree install -y gnome-tweaks || echo "⚠️  Failed to install $pkg"
+fi
 
 # download repo files for lazygit
 VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
