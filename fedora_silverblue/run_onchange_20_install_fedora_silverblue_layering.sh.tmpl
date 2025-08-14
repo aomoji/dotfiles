@@ -1,0 +1,35 @@
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.ID "fedora") (eq .chezmoi.osRelease.VARIANT_ID "silverblue") }}
+
+#!/bin/bash
+set -euo pipefail
+
+lp_count="$(rpm-ostree status | grep -c 'LayeredPackages:')"
+if [[ "${lp_count}" -ge 2 ]]; then
+  echo "ℹ️  Pending deployment detected. Please run 'systemctl reboot', then run 'chezmoi apply' again."
+  exit 0
+fi
+
+echo "==> Installing Fedora packages..."
+
+# CLI tools
+CLI_PKGS=(
+  neovim
+  zsh
+  lazygit
+  direnv
+  nkf
+  fzf
+)
+
+for pkg in "${CLI_PKGS[@]}"; do
+  if rpm -q "$pkg" >/dev/null 2>&1; then
+    echo "✓ $pkg already installed."
+  else
+    rpm-ostree install -y "$pkg" || echo "⚠️  Failed to install $pkg"
+  fi
+done
+
+echo
+echo ">>> Please reboot, then run: chezmoi apply <<<"
+
+{{- end }}
