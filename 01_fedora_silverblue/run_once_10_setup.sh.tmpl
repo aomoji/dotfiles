@@ -5,7 +5,7 @@ set -euo pipefail
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 if rpm -q gnome-tweaks >/dev/null 2>&1; then
-  echo "✓ $pkg already installed."
+  echo "✓ gnome-tweaks already installed."
 else
   rpm-ostree install -y gnome-tweaks || echo "⚠️  Failed to install $pkg"
 fi
