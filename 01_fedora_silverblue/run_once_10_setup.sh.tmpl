@@ -10,7 +10,7 @@ else
   rpm-ostree install -y gnome-tweaks || echo "⚠️  Failed to install $pkg"
 fi
 
-# download repo files for lazygit
+echo "Download repo files for lazygit"
 VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
 sudo curl --output-dir "/etc/yum.repos.d/" --remote-name  https://copr.fedorainfracloud.org/coprs/dejan/lazygit/repo/fedora-${VERSION_ID}/dejan-lazygit-fedora-${VERSION_ID}.repo
 rpm-ostree refresh-md --force
