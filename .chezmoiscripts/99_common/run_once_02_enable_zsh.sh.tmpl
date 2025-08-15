@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+ZSH_PATH="$(command -v zsh)"
+
+if [ "$SHELL" != "$ZSH_PATH" ]; then
+  echo "Changing login shell to zsh..."
+  chsh -s "$ZSH_PATH"
+else
+  echo "zsh is already the login shell."
+fi
