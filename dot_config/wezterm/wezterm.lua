@@ -15,7 +15,7 @@ local config = {}
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
-	config = wezterm.config_builder()
+    config = wezterm.config_builder()
 end
 
 -- This is where you actually apply your config choices
@@ -33,8 +33,7 @@ config.color_scheme = "Everforest Dark (Gogh)"
 -----------------------------------------------------------------
 --- font
 ---------------------------------------------------------------
-config.font = wezterm.font("HackGen Console NF")
-config.font_size = 15.0
+config.font_size = 14.0
 ---------------------------------------------------------------
 
 -----------------------------------------------------------------
@@ -50,10 +49,10 @@ config.tab_bar_at_bottom = false
 config.default_cursor_style = "BlinkingBlock"
 -- padding
 config.window_padding = {
-	left = 10,
-	right = 10,
-	top = 10,
-	bottom = 10,
+    left = 10,
+    right = 10,
+    top = 10,
+    bottom = 10,
 }
 -- decoration
 config.window_decorations = "RESIZE"
@@ -68,9 +67,9 @@ config.show_new_tab_button_in_tab_bar = false
 ---------------------------------------------------------------
 -- leader key
 config.leader = {
-	key = "q",
-	mods = "CTRL",
-	timeout_milliseconds = 2000,
+    key = "q",
+    mods = "CTRL",
+    timeout_milliseconds = 2000,
 }
 -- Set keybinds.
 config.keys = keybinds.create_keybinds()
