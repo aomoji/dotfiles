@@ -7,9 +7,9 @@ if rpm-ostree status | grep -q 'Diff:'; then
   exit 0
 fi
 
-echo "==> Installing Fedora packages..."
+echo "==> Installing Fedora packages (batch with rpm-ostree)..."
 
-# CLI tools
+# 一括インストール候補
 CLI_PKGS=(
   # For openssl begin
   pkgconf
@@ -25,15 +25,22 @@ CLI_PKGS=(
   fzf
 )
 
+# 既に入っているものを除外して、必要分だけを1回で適用
+MISSING=()
 for pkg in "${CLI_PKGS[@]}"; do
   if rpm -q "$pkg" >/dev/null 2>&1; then
     echo "✓ $pkg already installed."
   else
-    rpm-ostree install -y "$pkg" || echo "⚠️  Failed to install $pkg"
+    MISSING+=("$pkg")
   fi
 done
 
-echo
-echo ">>> Please reboot, then run: chezmoi apply <<<"
-
+if [[ ${#MISSING[@]} -gt 0 ]]; then
+  echo "→ Installing (batch): ${MISSING[*]}"
+  rpm-ostree install -y "${MISSING[@]}"
+  echo
+  echo ">>> Please reboot, then run: chezmoi apply <<<"
+else
+  echo "✅ Nothing to install."
+fi
 {{- end -}}
