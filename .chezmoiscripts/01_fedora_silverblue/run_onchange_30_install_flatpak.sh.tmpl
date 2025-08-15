@@ -4,7 +4,7 @@ set -euo pipefail
 
 if rpm-ostree status | grep -q 'Diff:'; then
   echo "ℹ️  Pending deployment detected. Please run 'systemctl reboot', then run 'chezmoi apply' again."
-  exit 0
+  exit 1
 fi
 
 # GUI apps（flatpak）
