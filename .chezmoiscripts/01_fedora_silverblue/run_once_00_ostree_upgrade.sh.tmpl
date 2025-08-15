@@ -1,0 +1,12 @@
+{{- if and (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") -}}
+#!/bin/bash
+set -euo pipefail
+
+if rpm-ostree status | grep -q "State: busy"; then
+  echo "⚠️  rpm-ostree transaction in progress, cancelling..."
+  rpm-ostree cancel
+fi
+
+rpm-ostree upgrade
+
+{{- end -}}

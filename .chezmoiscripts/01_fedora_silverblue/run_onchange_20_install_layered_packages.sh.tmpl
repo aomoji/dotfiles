@@ -7,6 +7,11 @@ if rpm-ostree status | grep -q 'Diff:'; then
   exit 0
 fi
 
+if rpm-ostree status | grep -q "State: busy"; then
+  echo "⚠️  rpm-ostree transaction in progress, cancelling..."
+  rpm-ostree cancel
+fi
+
 echo "==> Installing Fedora packages (batch with rpm-ostree)..."
 
 # 一括インストール候補

@@ -2,12 +2,21 @@
 #!/bin/bash
 set -euo pipefail
 
+if rpm-ostree status | grep -q 'Diff:'; then
+  echo "ℹ️  Pending deployment detected. Please run 'systemctl reboot', then run 'chezmoi apply' again."
+  exit 0
+fi
+
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 if rpm -q gnome-tweaks >/dev/null 2>&1; then
   echo "✓ gnome-tweaks already installed."
 else
-  rpm-ostree install -y gnome-tweaks || echo "⚠️  Failed to install $pkg"
+  if rpm-ostree status | grep -q "State: busy"; then
+    echo "⚠️  rpm-ostree transaction in progress, cancelling..."
+    rpm-ostree cancel
+  fi
+  rpm-ostree install -y gnome-tweaks || echo "⚠️  Failed to install gnome-tweaks"
 fi
 
 VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
