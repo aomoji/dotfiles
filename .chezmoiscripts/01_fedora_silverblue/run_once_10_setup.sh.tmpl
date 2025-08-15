@@ -15,6 +15,14 @@ VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
 sudo curl --output-dir "/etc/yum.repos.d/" --remote-name  https://copr.fedorainfracloud.org/coprs/dejan/lazygit/repo/fedora-${VERSION_ID}/dejan-lazygit-fedora-${VERSION_ID}.repo
 rpm-ostree refresh-md --force
 
+# weztermから利用するフォントをダウンロード
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+curl -LO https://github.com/yuru7/HackGen/releases/latest/download/HackGen_Console.zip
+unzip -o HackGen_Console.zip
+rm HackGen_Console.zip
+fc-cache -fv
+
 echo
 echo "ℹ️  Please run 'systemctl reboot', then run 'chezmoi apply' again."
 
