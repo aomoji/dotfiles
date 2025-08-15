@@ -1,0 +1,26 @@
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") -}}
+#!/bin/bash
+set -euo pipefail
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+if rpm -q gnome-tweaks >/dev/null 2>&1; then
+  echo "✓ gnome-tweaks already installed."
+else
+  rpm-ostree install -y gnome-tweaks || echo "⚠️  Failed to install $pkg"
+fi
+
+VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
+REPO_FILE="/etc/yum.repos.d/dejan-lazygit-fedora-${VERSION_ID}.repo"
+if [ ! -f "$REPO_FILE" ]; then
+    echo "Download repo files for lazygit"
+    sudo curl --output-dir "/etc/yum.repos.d/" --remote-name  https://copr.fedorainfracloud.org/coprs/dejan/lazygit/repo/fedora-${VERSION_ID}/dejan-lazygit-fedora-${VERSION_ID}.repo
+    rpm-ostree refresh-md --force
+else
+  echo "ℹ️  Repo file already exists: $REPO_FILE"
+fi
+
+echo
+echo "ℹ️  Please run 'systemctl reboot', then run 'chezmoi apply' again."
+
+{{- end -}}

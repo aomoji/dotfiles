@@ -2,42 +2,21 @@
 #!/bin/bash
 set -euo pipefail
 
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-if rpm -q gnome-tweaks >/dev/null 2>&1; then
-  echo "✓ gnome-tweaks already installed."
-else
-  rpm-ostree install -y gnome-tweaks || echo "⚠️  Failed to install $pkg"
-fi
-
-VERSION_ID="$(. /etc/os-release && echo "$VERSION_ID")"
-REPO_FILE="/etc/yum.repos.d/dejan-lazygit-fedora-${VERSION_ID}.repo"
-if [ ! -f "$REPO_FILE" ]; then
-    echo "Download repo files for lazygit"
-    sudo curl --output-dir "/etc/yum.repos.d/" --remote-name  https://copr.fedorainfracloud.org/coprs/dejan/lazygit/repo/fedora-${VERSION_ID}/dejan-lazygit-fedora-${VERSION_ID}.repo
-    rpm-ostree refresh-md --force
-else
-  echo "ℹ️  Repo file already exists: $REPO_FILE"
-fi
-
 # weztermから利用するフォントをダウンロード
 FONT_DIR="$HOME/.local/share/fonts"
-ZIP_URL="https://github.com/yuru7/HackGen/releases/latest/download/HackGen_Console.zip"
+ZIP_URL="https://github.com/yuru7/HackGen/releases/download/v{{ .hackgenVersion }}/HackGen_NF_v{{ .hackgenVersion }}.zip"
 mkdir -p "$FONT_DIR"
 cd "$FONT_DIR"
-# HackGen Console のフォントファイルが既にあるかチェック
-if ls HackGenConsole*.ttf >/dev/null 2>&1; then
-  echo "ℹ️  HackGen Console fonts already exist in $FONT_DIR"
+# フォントファイルが既にあるかチェック
+if ls HackGen*.ttf >/dev/null 2>&1; then
+  echo "ℹ️  HackGen fonts already exist in $FONT_DIR"
 else
-  echo "⬇️  Downloading HackGen Console fonts..."
-  curl -LO "$ZIP_URL"
-  unzip -o HackGen_Console.zip
-  rm HackGen_Console.zip
+  echo "⬇️  Downloading HackGen fonts..."
+  curl -fL -o HackGen_NF.zip "$ZIP_URL"
+  unzip -o HackGen_NF.zip
+  rm HackGen_NF.zip
   echo "🧹 Refreshing font cache..."
   fc-cache -fv
 fi
-
-echo
-echo "ℹ️  Please run 'systemctl reboot', then run 'chezmoi apply' again."
 
 {{- end -}}
