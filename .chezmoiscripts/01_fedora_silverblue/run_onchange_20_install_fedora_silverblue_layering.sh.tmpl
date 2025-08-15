@@ -2,8 +2,7 @@
 #!/bin/bash
 set -euo pipefail
 
-lp_count="$(rpm-ostree status | grep -c 'LayeredPackages:')"
-if [[ "${lp_count}" -ge 2 ]]; then
+if rpm-ostree status | grep -q 'Diff:'; then
   echo "ℹ️  Pending deployment detected. Please run 'systemctl reboot', then run 'chezmoi apply' again."
   exit 0
 fi
@@ -12,7 +11,12 @@ echo "==> Installing Fedora packages..."
 
 # CLI tools
 CLI_PKGS=(
+  # For openssl begin
+  pkgconf
+  perl-FindBin
+  perl-IPC-Cmd
   openssl-devel
+  # For openssl end
   neovim
   zsh
   lazygit
