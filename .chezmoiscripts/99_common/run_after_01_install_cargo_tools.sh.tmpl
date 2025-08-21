@@ -10,10 +10,17 @@ fi
 # Rustup で Rust & Cargo をインストール
 if ! command -v cargo >/dev/null 2>&1; then
   echo "Installing rustup..."
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal
   export PATH="$HOME/.cargo/bin:$PATH"
 else
   echo "Cargo is already installed."
+fi
+
+# インストールする前にrustupをアップデート
+if command -v rustup >/dev/null 2>&1; then
+  rustup set profile minimal
+  rustup update stable
+  rustup default stable
 fi
 
 echo "==> Installing Rust tools from cargo package list..."
