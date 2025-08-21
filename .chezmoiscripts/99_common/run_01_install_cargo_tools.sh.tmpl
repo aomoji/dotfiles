@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-{{ if and (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") }}
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") }}
 if rpm-ostree status | grep -q 'Diff:'; then
   echo "ℹ️  Pending deployment detected. Please run 'systemctl reboot', then run 'chezmoi apply' again."
   exit 1
