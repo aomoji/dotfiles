@@ -1,7 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-ZSH_PATH="$(command -v zsh)"
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") -}}
+  ZSH_PATH="/usr/bin/zsh"
+{{- else -}}
+  ZSH_PATH="$(command -v zsh)"
+{{- end -}}
 
 if [ "$SHELL" != "$ZSH_PATH" ]; then
   echo "Changing login shell to zsh..."
