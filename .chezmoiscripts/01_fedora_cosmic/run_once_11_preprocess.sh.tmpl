@@ -5,6 +5,12 @@ set -euo pipefail
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 CLI_PKGS=(
+  # For openssl begin
+  pkgconf
+  perl-FindBin
+  perl-IPC-Cmd
+  openssl-devel
+  # For openssl end
   zsh
   distrobox
   gcc
