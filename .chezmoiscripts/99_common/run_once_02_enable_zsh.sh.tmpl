@@ -2,6 +2,10 @@
 set -euo pipefail
 
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (or (eq .chezmoi.osRelease.variant "Silverblue") (eq .chezmoi.osRelease.variant "COSMIC Atomic") ) }}
+  if rpm-ostree status | grep -q 'Diff:'; then
+    echo "ℹ️  Pending deployment detected. Please run 'systemctl reboot', then run 'chezmoi apply' again."
+    exit 1
+  fi
   ZSH_PATH="/usr/bin/zsh"
 {{ else }}
   ZSH_PATH="$(command -v zsh)"
