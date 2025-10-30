@@ -2,12 +2,10 @@
 image=fedora:{{ .chezmoi.osRelease.versionID }}
 init=true
 additional_packages="fcitx5 fcitx5-mozc fcitx5-configtool fcitx5-gtk fcitx5-qt"
-init_hooks="
-  export GTK_IM_MODULE=fcitx;
-  export QT_IM_MODULE=fcitx;
-  export XMODIFIERS=@im=fcitx;
-  fcitx5 &;
-"
+init_hooks=export GTK_IM_MODULE=fcitx;
+init_hooks=export QT_IM_MODULE=fcitx;
+init_hooks=export XMODIFIERS=@im=fcitx;
+init_hooks=fcitx5 &;
 
 [dev]
 image=fedora:{{ .chezmoi.osRelease.versionID }}
