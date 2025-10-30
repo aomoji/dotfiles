@@ -1,0 +1,26 @@
+[input_method]
+image=fedora:{{ .chezmoi.osRelease.versionID }}
+init=true
+additional_packages="fcitx5 fcitx5-mozc fcitx5-configtool fcitx5-gtk fcitx5-qt"
+init_hooks="
+  export GTK_IM_MODULE=fcitx;
+  export QT_IM_MODULE=fcitx;
+  export XMODIFIERS=@im=fcitx;
+  fcitx5 --replace --verbose &
+"
+
+[dev]
+image=fedora:{{ .chezmoi.osRelease.versionID }}
+# neovim
+init_hooks=cargo install bob-nvim;
+init_hooks=bob install stable;
+init_hooks=bob use stable;
+# lazygit
+pre_init_hooks=sudo dnf copr enable dejan/lazygit
+additional_packages="lazygit"
+# other packages
+additional_packages="direnv nkf fzf"
+
+[python]
+clone=dev
+init_hooks=uv python install 3.14.0;

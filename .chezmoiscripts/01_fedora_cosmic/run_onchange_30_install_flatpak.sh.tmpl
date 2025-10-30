@@ -1,0 +1,21 @@
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "COSMIC Atomic") -}}
+#!/bin/bash
+set -euo pipefail
+
+# GUI apps（flatpak）
+FLATPAK_APPS=(
+  org.wezfurlong.wezterm
+  dev.zed.Zed
+)
+
+for app in "${FLATPAK_APPS[@]}"; do
+  if flatpak info "$app" >/dev/null 2>&1; then
+    echo "✓ $app already installed."
+  else
+    flatpak install -y flathub "$app" || echo "⚠️  Failed to install $app"
+  fi
+done
+
+echo "✅ Fedora package install step done."
+
+{{- end -}}

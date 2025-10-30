@@ -14,6 +14,6 @@ else
   echo "zsh is already the login shell."
 fi
 
-{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "Silverblue") }}
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (or (eq .chezmoi.osRelease.variant "Silverblue") (eq .chezmoi.osRelease.variant "COSMIC Atomic") ) }}
   echo "Please run 'systemctl reboot', login into shell again."
 {{ end }}

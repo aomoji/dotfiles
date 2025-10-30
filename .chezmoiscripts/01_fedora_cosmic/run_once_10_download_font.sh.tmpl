@@ -1,0 +1,22 @@
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "COSMIC Atomic") -}}
+#!/bin/bash
+set -euo pipefail
+
+# Weztermから利用するフォントをダウンロード
+FONT_DIR="$HOME/.local/share/fonts"
+ZIP_URL="https://github.com/yuru7/HackGen/releases/download/v{{ .hackgenVersion }}/HackGen_NF_v{{ .hackgenVersion }}.zip"
+mkdir -p "$FONT_DIR"
+cd "$FONT_DIR"
+# フォントファイルが既にあるかチェック
+if ls HackGen* >/dev/null 2>&1; then
+  echo "ℹ️  HackGen fonts already exist in $FONT_DIR"
+else
+  echo "⬇️  Downloading HackGen fonts..."
+  curl -fL -o HackGen_NF.zip "$ZIP_URL"
+  unzip -o HackGen_NF.zip
+  rm HackGen_NF.zip
+  echo "🧹 Refreshing font cache..."
+  fc-cache -fv
+fi
+
+{{- end -}}
