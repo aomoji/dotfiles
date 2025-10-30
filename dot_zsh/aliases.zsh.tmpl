@@ -19,6 +19,7 @@ _abbr() {
 
 # --------------------------
 _abbr myip 'curl http://ipecho.net/plain; echo'
+
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (eq .chezmoi.osRelease.variant "COSMIC Atomic") -}}
 _abbr vi "distrobox enter dev -- nvim"
 _abbr lg "distrobox enter dev -- lazygit"
@@ -30,6 +31,7 @@ _abbr python "distrobox enter python -- python"
 _abbr vi nvim
 _abbr lg lazygit
 {{- end -}}
+
 _abbr ls 'eza'
 _abbr la 'eza -Glah'
 _abbr lt 'eza -T'
