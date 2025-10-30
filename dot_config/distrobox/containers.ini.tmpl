@@ -1,3 +1,4 @@
+# TODO:自動的に日本語入力がONにならない。環境変数もセットされていない様子
 [input_method]
 image=fedora:{{ .chezmoi.osRelease.versionID }}
 init=true
@@ -7,6 +8,7 @@ init_hooks=export QT_IM_MODULE=fcitx;
 init_hooks=export XMODIFIERS=@im=fcitx;
 init_hooks=fcitx5 &;
 
+# TODO:パッケージのインストールに失敗している
 [dev]
 image=fedora:{{ .chezmoi.osRelease.versionID }}
 # neovim
@@ -19,6 +21,7 @@ additional_packages="lazygit"
 # other packages
 additional_packages="direnv nkf fzf"
 
+# TODO:devの問題が解消したらこちらも確認する
 [python]
 clone=dev
 init_hooks=uv python install 3.14.0;
