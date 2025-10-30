@@ -6,4 +6,9 @@ distrobox assemble create --file ~/.config/distrobox/containers.ini
 
 echo "✅ Containers setup step done."
 
+systemctl --user daemon-reload
+systemctl --user enable --now distrobox-fcitx5.service
+
+echo "✅ distrobox-fcitx5.service enabled."
+
 {{- end -}}
