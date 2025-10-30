@@ -57,6 +57,7 @@ while read -r crate; do
   fi
 done < "$PACKAGE_FILE"
 
+# TODO: uvもdistrobox内にインストールするように変更
 # Other special cases.
 if ! command -v uv >/dev/null 2>&1; then
     echo "Installing uv..."
