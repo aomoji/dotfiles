@@ -4,6 +4,28 @@ set -euo pipefail
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-rpm-ostree install -y zsh distrobox
+CLI_PKGS=(
+  zsh
+  distrobox
+)
+
+# 既に入っているものを除外して、必要分だけを1回で適用
+MISSING=()
+for pkg in "${CLI_PKGS[@]}"; do
+  if rpm -q "$pkg" >/dev/null 2>&1; then
+    echo "✓ $pkg already installed."
+  else
+    MISSING+=("$pkg")
+  fi
+done
+
+if [[ ${#MISSING[@]} -gt 0 ]]; then
+  echo "→ Installing (batch): ${MISSING[*]}"
+  rpm-ostree install -y "${MISSING[@]}"
+  echo
+  echo ">>> Please reboot, then run: chezmoi apply <<<"
+else
+  echo "✅ Nothing to install."
+fi
 
 {{- end -}}
