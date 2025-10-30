@@ -4,7 +4,7 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/distrobox enter jp -- bash -lc "fcitx5"
+ExecStart=/usr/bin/distrobox enter input_mothod -- bash -lc "fcitx5"
 Restart=always
 
 [Install]
